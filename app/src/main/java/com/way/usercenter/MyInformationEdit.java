@@ -45,7 +45,7 @@ public class MyInformationEdit extends Activity {
                         string_userClass = "主人";
                         break;
                     case R.id.class_live:
-                        string_userClass = "常驻者";
+                        string_userClass = "住户";
                         break;
                     case R.id.class_visitor:
                         string_userClass = "访客";
@@ -101,7 +101,7 @@ public class MyInformationEdit extends Activity {
         if(!userClass0.equals("1")){
             if(userClass0.equals("主人"))
                 id=1;
-            else if(userClass0.equals("常驻者"))
+            else if(userClass0.equals("住户"))
                 id=2;
             else if(userClass0.equals("访客"))
                     id=3;

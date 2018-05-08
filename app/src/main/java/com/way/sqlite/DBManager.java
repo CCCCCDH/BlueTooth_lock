@@ -99,53 +99,77 @@ public class DBManager {
 
 
     public void insertRecord(int i){
+
+        SharedPreferences sp1 =context.getSharedPreferences("user_information",Context.MODE_PRIVATE);
+        //获取当前的时间
+        SimpleDateFormat formatter1    =   new    SimpleDateFormat    ("yyyy年MM月dd日 HH:mm:ss");
+        Date curDate1    =   new    Date(System.currentTimeMillis());//获取当前时间
+        String    str    =    formatter1.format(curDate1);
+
+        Log.w("insertRecord:","-----time:"+str);
+        ContentValues cv1 = new ContentValues();
         switch (i){
             case 1:
-                Log.w("insert record:", "-----主人");
-                SharedPreferences sp1 =context.getSharedPreferences("user_information",Context.MODE_PRIVATE);
-                //获取当前的时间
-                SimpleDateFormat formatter1    =   new    SimpleDateFormat    ("yyyy年MM月dd日 HH:mm:ss");
-                Date curDate1    =   new    Date(System.currentTimeMillis());//获取当前时间
-                String    str1    =    formatter1.format(curDate1);
-
-                Log.w("insertRecord:","-----time:"+str1);
-                ContentValues cv1 = new ContentValues();
                 cv1.put("visitor","主人");
-                cv1.put("name", sp1.getString("name","未填写"));
-                cv1.put("time",str1 );
-                db.insert(DBHelper.DB_TABLE_NAME_RECORD,null,cv1);
                 break;
             case 2:
-                Log.w("insert record:", "-----常驻人员");
-                SharedPreferences sp2 =context.getSharedPreferences("user_information",Context.MODE_PRIVATE);
-                //获取当前的时间
-                SimpleDateFormat formatter2    =   new   SimpleDateFormat    ("yyyy年MM月dd日 HH:mm:ss");
-                Date curDate2    =   new    Date(System.currentTimeMillis());//获取当前时间
-                String    str2    =    formatter2.format(curDate2);
-
-                Log.w("insertRecord:","-----time:"+str2);
-                ContentValues cv2 = new ContentValues();
-                cv2.put("visitor","常驻人员");
-                cv2.put("name", sp2.getString("name","未填写"));
-                cv2.put("time",str2 );
-                db.insert(DBHelper.DB_TABLE_NAME_RECORD,null,cv2);
+                cv1.put("visitor","住户");
                 break;
             case 3:
-                Log.w("insert record:", "-----访客");
-                SharedPreferences sp3 =context.getSharedPreferences("user_information",Context.MODE_PRIVATE);
-                //获取当前的时间
-                SimpleDateFormat formatter3    =   new    SimpleDateFormat    ("yyyy年MM月dd日 HH:mm:ss");
-                Date curDate3    =   new    Date(System.currentTimeMillis());//获取当前时间
-                String    str3    =    formatter3.format(curDate3);
-
-                Log.w("insertRecord:","-----time:"+str3);
-                ContentValues cv3 = new ContentValues();
-                cv3.put("visitor","访客");
-                cv3.put("name", sp3.getString("name","未填写"));
-                cv3.put("time",str3 );
-                db.insert(DBHelper.DB_TABLE_NAME_RECORD,null,cv3);
+                cv1.put("visitor","访客");
                 break;
+
         }
+        cv1.put("name", sp1.getString("name","未填写"));
+        cv1.put("time",str );
+        db.insert(DBHelper.DB_TABLE_NAME_RECORD,null,cv1);
+//        switch (i){
+//            case 1:
+//                Log.w("insert record:", "-----主人");
+//                SharedPreferences sp1 =context.getSharedPreferences("user_information",Context.MODE_PRIVATE);
+//                //获取当前的时间
+//                SimpleDateFormat formatter1    =   new    SimpleDateFormat    ("yyyy年MM月dd日 HH:mm:ss");
+//                Date curDate1    =   new    Date(System.currentTimeMillis());//获取当前时间
+//                String    str1    =    formatter1.format(curDate1);
+//
+//                Log.w("insertRecord:","-----time:"+str1);
+//                ContentValues cv1 = new ContentValues();
+//                cv1.put("visitor","主人");
+//                cv1.put("name", sp1.getString("name","未填写"));
+//                cv1.put("time",str1 );
+//                db.insert(DBHelper.DB_TABLE_NAME_RECORD,null,cv1);
+//                break;
+//            case 2:
+//                Log.w("insert record:", "-----常驻人员");
+//                SharedPreferences sp2 =context.getSharedPreferences("user_information",Context.MODE_PRIVATE);
+//                //获取当前的时间
+//                SimpleDateFormat formatter2    =   new   SimpleDateFormat    ("yyyy年MM月dd日 HH:mm:ss");
+//                Date curDate2    =   new    Date(System.currentTimeMillis());//获取当前时间
+//                String    str2    =    formatter2.format(curDate2);
+//
+//                Log.w("insertRecord:","-----time:"+str2);
+//                ContentValues cv2 = new ContentValues();
+//                cv2.put("visitor","常驻人员");
+//                cv2.put("name", sp2.getString("name","未填写"));
+//                cv2.put("time",str2 );
+//                db.insert(DBHelper.DB_TABLE_NAME_RECORD,null,cv2);
+//                break;
+//            case 3:
+//                Log.w("insert record:", "-----访客");
+//                SharedPreferences sp3 =context.getSharedPreferences("user_information",Context.MODE_PRIVATE);
+//                //获取当前的时间
+//                SimpleDateFormat formatter3    =   new    SimpleDateFormat    ("yyyy年MM月dd日 HH:mm:ss");
+//                Date curDate3    =   new    Date(System.currentTimeMillis());//获取当前时间
+//                String    str3    =    formatter3.format(curDate3);
+//
+//                Log.w("insertRecord:","-----time:"+str3);
+//                ContentValues cv3 = new ContentValues();
+//                cv3.put("visitor","访客");
+//                cv3.put("name", sp3.getString("name","未填写"));
+//                cv3.put("time",str3 );
+//                db.insert(DBHelper.DB_TABLE_NAME_RECORD,null,cv3);
+//                break;
+//        }
     }
     public void closeDB() {
 

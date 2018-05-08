@@ -1,3 +1,0 @@
-<cycleInterpolator xmlns:android="http://schemas.android.com/apk/res/android"
-    android:cycles="5" />
-<!-- 动画连续多次运行，这里是5次 --><!-- From: file:/C:/Users/wise/Desktop/LockPattern1/app/src/main/res/anim/interpolator_cycle.xml -->

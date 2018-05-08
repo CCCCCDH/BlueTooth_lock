@@ -17,7 +17,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:text="基于蓝牙的身份识别系统"
+        android:text="基于蓝牙4.0的安卓智能门锁系统"
         android:textColor="#fff"
         android:textSize="20sp"
         android:textStyle="bold" />

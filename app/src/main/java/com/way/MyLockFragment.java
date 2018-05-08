@@ -1,11 +1,13 @@
 package com.way;
 
+import java.math.BigInteger;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,6 +40,20 @@ import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.UUID;
+
+import com.clj.fastble.BleManager;
+import com.clj.fastble.callback.BleGattCallback;
+import com.clj.fastble.callback.BleMtuChangedCallback;
+import com.clj.fastble.callback.BleRssiCallback;
+import com.clj.fastble.callback.BleScanCallback;
+import com.clj.fastble.callback.BleIndicateCallback;
+import com.clj.fastble.callback.BleNotifyCallback;
+import com.clj.fastble.callback.BleReadCallback;
+import com.clj.fastble.callback.BleWriteCallback;
+import com.clj.fastble.exception.BleException;
+import com.clj.fastble.utils.HexUtil;
+import com.clj.fastble.data.BleDevice;
 
 
 /**
@@ -61,11 +77,17 @@ public class MyLockFragment extends Fragment  {
     private  static SharedPreferences pre;//用来读取保存的密码
     private  static SharedPreferences.Editor editor;
     private  static Boolean isRemember;
-
+    private  static Boolean isGetMsg;
+    private BleManager mBleManager;
     @Override
     public void onStart() {
         super.onStart();
-
+        mBleManager = BleManager.getInstance();
+        mBleManager.init(this.getActivity().getApplication());
+        mBleManager
+                .enableLog(true)
+                .setReConnectCount(1, 5000)
+                .setOperateTimeout(5000);
     }
 
     @Override
@@ -127,25 +149,31 @@ public class MyLockFragment extends Fragment  {
                 progressDialog.dismiss();
                 switch (msg.what) {
                     case 0:
-                        Log.w("mString in handle ", mString + "is equal " + mString.equals("1"));
-                        if(mString.equals("1")) {
-                            Log.w("mhandler open class:", "----class:主人");
-                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
-                            //插入一条开锁记录
-                            dbManager.insertRecord(1);
-                            //当开锁成功时，检查复选框被选中
-                        }else if(mString.equals("2")){
-                            Log.w("mhandler open class:", "----class:常驻人员");
-                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
-                            //插入一条开锁记录
-                            dbManager.insertRecord(2);
-                        }else if(mString.equals("3")){
-                            Log.w("mhandler open class:", "----class:访客");
-                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
-                            //插入一条开锁记录
-                            dbManager.insertRecord(3);
-                        }else
+                        if(mString.equals("8")) {
                             Toast.makeText(context, "密码错误！", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        Log.w("mString in handle ", mString + "is equal " + mString.equals("1"));
+                        Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
+                        dbManager.insertRecord(Integer.parseInt(mString));
+//                        if(mString.equals("1")) {
+//                            Log.w("mhandler open class:", "----class:主人");
+//                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
+//                            //插入一条开锁记录
+//                            dbManager.insertRecord(1);
+//                            //当开锁成功时，检查复选框被选中
+//                        }else if(mString.equals("2")){
+//                            Log.w("mhandler open class:", "----class:常驻人员");
+//                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
+//                            //插入一条开锁记录
+//                            dbManager.insertRecord(2);
+//                        }else if(mString.equals("3")){
+//                            Log.w("mhandler open class:", "----class:访客");
+//                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
+//                            //插入一条开锁记录
+//                            dbManager.insertRecord(3);
+//                        }else
+//                            Toast.makeText(context, "密码错误！", Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
                         Toast.makeText(context, "开锁失败！", Toast.LENGTH_SHORT).show();
@@ -181,122 +209,265 @@ public class MyLockFragment extends Fragment  {
         super.onDestroy();
         dbManager.closeDB();//关闭数据库
     }
+    public String toHex(String arg) {//将4位string转换成8位hex string
+        return String.format("%04x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
+    }
     //定义一个连接线程类
     public class ConnectThread extends Thread {
-        private Boolean isConnected = false;
-        private BluetoothSocket mSocket;
+//        private Boolean isConnected = false;
+//        private BluetoothSocket mSocket;
+//        private BluetoothGatt mBluetoothGatt;
+        private BleDevice mBleDevice;
         private String password;
 
-        public ConnectThread(BluetoothDevice device, final String password) {
+        public ConnectThread(BluetoothDevice device, final String pwd) {
             Log.w("CtThread btDevice---", device.getAddress());
-            this.password = password;
+
+            this.password=("01"+toHex(pwd)+"23");
+//            this.password =  pwd;
             Method m;
-            try {
-                m =device.getClass().getMethod("createInsecureRfcommSocket", new Class[] {int.class});
-                mSocket = (BluetoothSocket) m.invoke(device, 1);
-            } catch (SecurityException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (NoSuchMethodException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (IllegalArgumentException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            mBleDevice = mBleManager.convertBleDevice(device);
+//            try {
+//                m =device.getClass().getMethod("createInsecureRfcommSocket", new Class[] {int.class});
+//                mSocket = (BluetoothSocket) m.invoke(device, 1);
+//            } catch (SecurityException e1) {
+//                // TODO Auto-generated catch block
+//                e1.printStackTrace();
+//            } catch (NoSuchMethodException e1) {
+//                // TODO Auto-generated catch block
+//                e1.printStackTrace();
+//            } catch (IllegalArgumentException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            } catch (IllegalAccessException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            } catch (InvocationTargetException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
 
 
         }
-
         public void run() {
             mBluetoothAdapter.cancelDiscovery();
-            try {
-                mSocket.connect();
-                Log.w("--------连接成功！----", "success！！");
-                isConnected = true;
-            } catch (IOException connectException) {
-                //如果不能打开，关闭socket并且退出
-                try {
-                    Log.w("--------连接失败！----", "btsocket");
-                    Message message=new Message();
-                    message.what=1;
-                    mHandler.sendMessage(message);
-                    mSocket.close();
-                } catch (IOException s) {
-                    return;
-                }
-            }
-
-            if (isConnected) {
-                try {
-                    OutputStream outputStream = mSocket.getOutputStream();
-                    InputStream inputStream = mSocket.getInputStream();
-                    outputStream.write(getHexBytes(password));
-                    outputStream.flush();
-
-                     inputStream2String(inputStream);
-
-
-                } catch (IOException e) {
-                }
-
-
-
-            if (mSocket != null) {
-                try {
-                    mSocket.close();
-                    Log.w("mSocket has been", "closed!!");
-                } catch (IOException e) {
-                }
-            }
+            connect(mBleDevice);
         }
-            }
 
+//        public void run() {
+//            mBluetoothAdapter.cancelDiscovery();
+//            try {
+//                connect(mBleDevice);
+//                mSocket.connect();
+//                Log.w("--------连接成功！----", "success！！");
+//                isConnected = true;
+//            } catch (IOException connectException) {
+//                //如果不能打开，关闭socket并且退出
+//                try {
+//                    Log.w("--------连接失败！----", "btsocket");
+//                    Message message=new Message();
+//                    message.what=1;
+//                    mHandler.sendMessage(message);
+//                    mSocket.close();
+//                } catch (IOException s) {
+//                    return;
+//                }
+//            }
+//
+//            if (isConnected) {
+//                try {
+//                    OutputStream outputStream = mSocket.getOutputStream();
+//                    InputStream inputStream = mSocket.getInputStream();
+//                    outputStream.write(getHexBytes(password));
+//                    outputStream.flush();
+//
+//                     inputStream2String(inputStream);
+//
+//
+//                } catch (IOException e) {
+//                }
+//
+//
+//
+//            if (mSocket != null) {
+//                try {
+//                    mSocket.close();
+//                    Log.w("mSocket has been", "closed!!");
+//                } catch (IOException e) {
+//                }
+//            }
+//        }
+//        }
 
-        public  void inputStream2String (InputStream in) throws IOException   {
+        private void connect(final BleDevice mBleDevice) {
+            mBleManager.connect(mBleDevice.getMac(), new BleGattCallback() {
+                @Override
+                public void onStartConnect() {
+                    // 开始连接
+                }
+
+                @Override
+                public void onConnectFail(BleDevice bleDevice, BleException exception) {
+                    Log.w("--------连接失败！----", "btsocket");
+                    Message message = new Message();
+                    message.what = 1;
+                    mHandler.sendMessage(message);
+                }
+
+                @Override
+                public void onConnectSuccess(final BleDevice bleDevice,final BluetoothGatt gatt, int status) {
+//                    try {
+//                    OutputStream outputStream = mSocket.getOutputStream();
+//                    InputStream inputStream = mSocket.getInputStream();
+//                    outputStream.write(getHexBytes(password));
+//                    outputStream.flush();
+//                    inputStream2String(inputStream);
+//
+//
+//                } catch (IOException e) {
+//                }
+                    isGetMsg=false;
+                    mBleManager.notify(
+                    bleDevice,
+                    "0000ffe0-0000-1000-8000-00805f9b34fb",
+                    "0000ffe1-0000-1000-8000-00805f9b34fb",
+                    new BleNotifyCallback() {
+
+                        @Override
+                        public void onNotifySuccess() {
+                        }
+
+                        @Override
+                        public void onNotifyFailure(final BleException exception) {
+                            try{
+                                inputStreamString(exception.toString().getBytes());
+                            }
+                            catch (IOException e) {
+                            }
+                        }
+
+                        @Override
+                        public void onCharacteristicChanged(byte[] data) {
+                            try{
+                                if(isGetMsg)
+                                {
+                                    mBleManager.stopNotify(
+                                            bleDevice,
+                                            "0000ffe0-0000-1000-8000-00805f9b34fb",
+                                            "0000ffe1-0000-1000-8000-00805f9b34fb");
+                                    return;
+                                }
+                                isGetMsg=true;
+                                inputStreamString(data);
+//                                inputStreamString(gatt.getService(
+//                                        UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb")).getCharacteristic(
+//                                        UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb")).getValue());
+                            }
+                            catch (IOException e) {
+                            }
+                        }
+                    });
+
+                    mBleManager.write(
+                        bleDevice,
+                        "0000ffe0-0000-1000-8000-00805f9b34fb",
+                        "0000ffe1-0000-1000-8000-00805f9b34fb",
+                            HexUtil.hexStringToBytes(password),//HexUtil.hexStringToBytes(password)
+                        new BleWriteCallback() {
+
+                            @Override
+                            public void onWriteSuccess(final int current, final int total, final byte[] justWrite) {
+
+                            }
+
+                            @Override
+                            public void onWriteFailure(final BleException exception) {
+
+                            }
+                        });
+
+//                    mBleManager.read(
+//                            bleDevice,
+//                            "0000ffe0-0000-1000-8000-00805f9b34fb",
+//                            "0000ffe1-0000-1000-8000-00805f9b34fb",
+//                            new BleReadCallback() {
+//
+//                                @Override
+//                                public void onReadSuccess(final byte[] data) {
+//                                    try{
+//                                        inputStreamString(data);
+//                                    }
+//                                    catch (IOException e) {
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onReadFailure(final BleException exception) {
+//                                    try{
+//                                    inputStreamString(exception.toString().getBytes());
+//                                    }
+//                                    catch (IOException e) {
+//                                    }
+//                                }
+//                            });
+                }
+
+                @Override
+                public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
+                    // 连接中断，isActiveDisConnected表示是否是主动调用了断开连接方法
+                    Log.w("--------连接中断！----", "btsocket");
+                    Message message = new Message();
+                    message.what = 1;
+                    mHandler.sendMessage(message);
+                }
+            });
+        }
+        public  void inputStreamString (byte[]  b) throws IOException   {
             Message message =new Message();//创建一个Message
-            StringBuffer out = new StringBuffer();
-            int count = 0;
-            while (count == 0) {
-                count = in.available();
-            }
-            Log.w("inputStream.available", "  " + count);
-            byte[]  b = new byte[count];
-            in.read(b);
+            Log.w("inputStream.available", "  " + b.length);
             mString=new String(b) ;
             message.what=0;
             Log.w("mString +","-"+mString+"-");
             mHandler.sendMessage(message);
         }
-        private byte[] getHexBytes(String password) {
-            int i = 0, n = 0;
-            byte[] bos = password.getBytes();
-            for (i = 0; i < bos.length; i++) {
-                if (bos[i] == 0x0a) n++;
-            }
-            byte[] bos_new = new byte[bos.length + n];
-            n = 0;
-            for (i = 0; i < bos.length; i++) { //手机中换行为0a,将其改为0d 0a后再发送
-                if (bos[i] == 0x0a) {
-                    bos_new[n] = 0x0d;
-                    n++;
-                    bos_new[n] = 0x0a;
-                } else {
-                    bos_new[n] = bos[i];
-                }
-                n++;
-            }
-            return bos_new;
-        }
+
+//        public  void inputStream2String (InputStream in) throws IOException   {
+//            Message message =new Message();//创建一个Message
+//            StringBuffer out = new StringBuffer();
+//            int count = 0;
+//            while (count == 0) {
+//                count = in.available();
+//            }
+//            Log.w("inputStream.available", "  " + count);
+//            byte[]  b = new byte[count];
+//            in.read(b);
+//            mString=new String(b) ;
+//            message.what=0;
+//            Log.w("mString +","-"+mString+"-");
+//            mHandler.sendMessage(message);
+//        }
+//        private byte[] getHexBytes(String password) {
+//            int i = 0, n = 0;
+//            byte[] bos = password.getBytes();
+//            for (i = 0; i < bos.length; i++) {
+//                if (bos[i] == 0x0a) n++;
+//            }
+//            byte[] bos_new = new byte[bos.length + n];
+//            n = 0;
+//            for (i = 0; i < bos.length; i++) { //手机中换行为0a,将其改为0d 0a后再发送
+//                if (bos[i] == 0x0a) {
+//                    bos_new[n] = 0x0d;
+//                    n++;
+//                    bos_new[n] = 0x0a;
+//                } else {
+//                    bos_new[n] = bos[i];
+//                }
+//                n++;
+//            }
+//            return bos_new;
+//        }
 
     }
-
     //自定义的adapter
     public class CustomDeviceAdapter extends BaseAdapter {
         private ArrayList<Beacon> devices;
@@ -343,6 +514,7 @@ public class MyLockFragment extends Fragment  {
             }else{
                 viewHolder=(ViewHolder)view.getTag();
             }
+
             final Beacon device =devices.get(i);
             final String deviceName3=device.getName();
             if(deviceName3!=null&&deviceName3.length()>0)
@@ -372,6 +544,7 @@ public class MyLockFragment extends Fragment  {
             Button bt_open;
             Button bt_config;
         }
+
     }
 
     private void starConfig(String deviceName,String deviceAddress) {
