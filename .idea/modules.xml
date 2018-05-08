@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BlueToothDoorLock.iml" filepath="$PROJECT_DIR$/BlueToothDoorLock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BlueTooth_lock.iml" filepath="$PROJECT_DIR$/BlueTooth_lock.iml" />
       <module fileurl="file://$PROJECT_DIR$/FastBleLib/FastBleLib.iml" filepath="$PROJECT_DIR$/FastBleLib/FastBleLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "F:\\Androidtest\\test\\BlueToothDoorLock\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-si\\values-si.xml",
+            "outputFile": "F:\\Androidtest\\test\\BlueTooth_lock\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-si\\values-si.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dd3bcde41d89a10b92c657aac1b131f1\\res\\values-si\\values-si.xml",
