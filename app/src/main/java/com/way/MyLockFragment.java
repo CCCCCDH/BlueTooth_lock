@@ -311,6 +311,7 @@ public class MyLockFragment extends Fragment  {
                     Log.w("--------连接失败！----", "btsocket");
                     Message message = new Message();
                     message.what = 1;
+                    mString="连接失败！";
                     mHandler.sendMessage(message);
                 }
 
@@ -382,7 +383,11 @@ public class MyLockFragment extends Fragment  {
 
                             @Override
                             public void onWriteFailure(final BleException exception) {
-
+                                Log.w("--------发送消息失败！----", "btsocket");
+                                Message message = new Message();
+                                message.what = 1;
+                                mString="发送开锁指令失败！";
+                                mHandler.sendMessage(message);
                             }
                         });
 
@@ -415,10 +420,10 @@ public class MyLockFragment extends Fragment  {
                 @Override
                 public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
                     // 连接中断，isActiveDisConnected表示是否是主动调用了断开连接方法
-                    Log.w("--------连接中断！----", "btsocket");
-                    Message message = new Message();
-                    message.what = 1;
-                    mHandler.sendMessage(message);
+//                    Log.w("--------连接中断！----", "btsocket");
+//                    Message message = new Message();
+//                    message.what = 1;
+//                    mHandler.sendMessage(message);
                 }
             });
         }
