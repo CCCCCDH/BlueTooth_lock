@@ -77,7 +77,7 @@ public class MyLockFragment extends Fragment  {
     private  static SharedPreferences pre;//用来读取保存的密码
     private  static SharedPreferences.Editor editor;
     private  static Boolean isRemember;
-    private  static Boolean isGetMsg;
+    private  static Boolean isGetMsgOver;
     private BleManager mBleManager;
     @Override
     public void onStart() {
@@ -152,10 +152,13 @@ public class MyLockFragment extends Fragment  {
                         if(mString.equals("8")) {
                             Toast.makeText(context, "密码错误！", Toast.LENGTH_SHORT).show();
                             break;
+                        }else if(mString.equals("1")||mString.equals("2")||mString.equals("3")){
+                            Log.w("mString in handle ", mString + "is equal " + mString.equals("1"));
+                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
+                            dbManager.insertRecord(Integer.parseInt(mString));
+                        }else{
+                            Toast.makeText(context, "未知消息！", Toast.LENGTH_SHORT).show();
                         }
-                        Log.w("mString in handle ", mString + "is equal " + mString.equals("1"));
-                        Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
-                        dbManager.insertRecord(Integer.parseInt(mString));
 //                        if(mString.equals("1")) {
 //                            Log.w("mhandler open class:", "----class:主人");
 //                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
@@ -179,10 +182,15 @@ public class MyLockFragment extends Fragment  {
                         Toast.makeText(context, "开锁失败！", Toast.LENGTH_SHORT).show();
                         break;
                 }
+                clean();
             }
         };
     }
 
+    public void clean( ){
+        isGetMsgOver=false;
+        mString="";
+    }
 
     @Override
     public void onResume() {
@@ -209,8 +217,8 @@ public class MyLockFragment extends Fragment  {
         super.onDestroy();
         dbManager.closeDB();//关闭数据库
     }
-    public String toHex(String arg) {//将4位string转换成8位hex string
-        return String.format("%04x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
+    public String toHex(String arg) {//将6位string转换成12位hex string
+        return String.format("%06x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
     }
     //定义一个连接线程类
     public class ConnectThread extends Thread {
@@ -309,6 +317,7 @@ public class MyLockFragment extends Fragment  {
                 @Override
                 public void onConnectFail(BleDevice bleDevice, BleException exception) {
                     Log.w("--------连接失败！----", "btsocket");
+                    StopNotify(bleDevice);
                     Message message = new Message();
                     message.what = 1;
                     mString="连接失败！";
@@ -327,7 +336,6 @@ public class MyLockFragment extends Fragment  {
 //
 //                } catch (IOException e) {
 //                }
-                    isGetMsg=false;
                     mBleManager.notify(
                     bleDevice,
                     "0000ffe0-0000-1000-8000-00805f9b34fb",
@@ -340,26 +348,22 @@ public class MyLockFragment extends Fragment  {
 
                         @Override
                         public void onNotifyFailure(final BleException exception) {
-                            try{
-                                inputStreamString(exception.toString().getBytes());
-                            }
-                            catch (IOException e) {
-                            }
+                            Log.w("--------接收消息失败！----", "btsocket");
+                            StopNotify(bleDevice);
+                            Message message = new Message();
+                            message.what = 1;
+                            mString="接收门锁消息失败！";
+                            mHandler.sendMessage(message);
                         }
 
                         @Override
                         public void onCharacteristicChanged(byte[] data) {
                             try{
-                                if(isGetMsg)
-                                {
-                                    mBleManager.stopNotify(
-                                            bleDevice,
-                                            "0000ffe0-0000-1000-8000-00805f9b34fb",
-                                            "0000ffe1-0000-1000-8000-00805f9b34fb");
-                                    return;
-                                }
-                                isGetMsg=true;
                                 inputStreamString(data);
+                                if(isGetMsgOver)
+                                {
+                                    StopNotify(bleDevice);
+                                }
 //                                inputStreamString(gatt.getService(
 //                                        UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb")).getCharacteristic(
 //                                        UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb")).getValue());
@@ -383,6 +387,7 @@ public class MyLockFragment extends Fragment  {
 
                             @Override
                             public void onWriteFailure(final BleException exception) {
+                                StopNotify(bleDevice);
                                 Log.w("--------发送消息失败！----", "btsocket");
                                 Message message = new Message();
                                 message.what = 1;
@@ -427,10 +432,20 @@ public class MyLockFragment extends Fragment  {
                 }
             });
         }
+
+
+        public void StopNotify(BleDevice bleDevice){
+            mBleManager.stopNotify(
+                    bleDevice,
+                    "0000ffe0-0000-1000-8000-00805f9b34fb",
+                    "0000ffe1-0000-1000-8000-00805f9b34fb");
+        }
+
         public  void inputStreamString (byte[]  b) throws IOException   {
             Message message =new Message();//创建一个Message
             Log.w("inputStream.available", "  " + b.length);
-            mString=new String(b) ;
+            mString=new String(b);
+            isGetMsgOver=true;
             message.what=0;
             Log.w("mString +","-"+mString+"-");
             mHandler.sendMessage(message);
