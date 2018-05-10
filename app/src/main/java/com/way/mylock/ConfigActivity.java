@@ -47,10 +47,10 @@ public class ConfigActivity extends Activity {
     private ListView configListView;
     private TextView configDeviceName;
     private SimpleAdapter mAdapter;
-    private int msgTypeTag=0;
+//    private int msgTypeTag=0;
     private String mString="";
-    private String mUserPwd="";
-    private String mLoginPwd="";
+//    private String mUserPwd="";
+//    private String mLoginPwd="";
     private String string_userClass="";
     private BluetoothAdapter mBluetoothAdapter =BluetoothAdapter.getDefaultAdapter();
     private String[] listContext =new String[]{"修改设备名称","修改密码","分享密钥","删除设备"};
@@ -58,7 +58,7 @@ public class ConfigActivity extends Activity {
     R.drawable.ic_config_share,R.drawable.ic_config_delete};
     private String configedName=""; //被管理设备的名称
     private String configedAddress=""; //被管理设备的地址
-    private  static Boolean isGetMsgOver;
+//    private  static Boolean isGetMsgOver;
     private ProgressDialog progressDialog;
     private static android.os.Handler mHandler;
     private BleManager mBleManager;
@@ -88,7 +88,7 @@ public class ConfigActivity extends Activity {
                 progressDialog.dismiss();
                 switch (msg.what){
                     case 0:
-                        if(msgTypeTag==1){
+                        if(mString.length()==1){
                             if(mString.equals("8")) {
                                 Toast.makeText(ConfigActivity.this, "密码错误！", Toast.LENGTH_SHORT).show();
                                 break;
@@ -102,20 +102,20 @@ public class ConfigActivity extends Activity {
                                 Toast.makeText(ConfigActivity.this, "收到未知消息！", Toast.LENGTH_SHORT).show();
                             }
                             break;
-                        }else if(msgTypeTag>1){
+                        }else if(mString.length()==13){
                             LayoutInflater inflater3 =LayoutInflater.from(ConfigActivity.this);
                             final View view3 =inflater3.inflate(R.layout.config_get_password_result, null);
 
                             final AlertDialog.Builder builder3 =new AlertDialog.Builder(ConfigActivity.this);
 
                             TextView editText_Userword=(TextView)view3.findViewById(R.id.config_GetPwd_Password_User);
-                            editText_Userword.setText(mUserPwd);
+                            editText_Userword.setText(mString.substring(1,7));
                             TextView editText_Loginword=(TextView)view3.findViewById(R.id.config_GetPwd_Password_Login);
-                            editText_Loginword.setText(mLoginPwd);
+                            editText_Loginword.setText(mString.substring(7,13));
 
                             builder3.setView(view3).
                                     setTitle("分享秘钥成功").
-                                    setIcon(R.drawable.ic_congif_password).
+                                    setIcon(R.drawable.ic_config_share).
                                     setNegativeButton("关闭",null).show();
                             break;
                         }else{
@@ -215,36 +215,20 @@ public class ConfigActivity extends Activity {
                                             string_userClass = "01";
                                         }
                                         EditText masterPasswordText = (EditText)view1.findViewById(R.id.config_changePassword_master);
-                                        EditText newPasswordText = (EditText)view1.findViewById(R.id.config_changePassword_master);
-                                        EditText newPassword2Text = (EditText)view1.findViewById(R.id.config_changePassword_master);
+                                        EditText newPasswordText = (EditText)view1.findViewById(R.id.config_changePassword_new1);
+                                        EditText newPassword2Text = (EditText)view1.findViewById(R.id.config_changePassword_new2);
 
                                         String masterPassword =masterPasswordText.getText().toString();
                                         String newPassword =newPasswordText.getText().toString();
                                         String newPassword2 =newPassword2Text.getText().toString();
-                                        if(masterPassword.length()!=6)
+                                        if(masterPassword.length()!=6||newPassword.length()!=6||newPassword2.length()!=6)
                                         {
-                                            masterPasswordText.setError("请输入6位数密码");
+                                            Toast.makeText(ConfigActivity.this,"请输入6位数密码",Toast.LENGTH_SHORT).show();
                                             return;
                                         }
-                                        if(newPassword.length()!=6)
-                                        {
-                                            newPasswordText.setError("请输入6位数密码");
-                                            return;
-                                        }
-                                        if(newPassword2.length()!=6)
-                                        {
-                                            newPassword2Text.setError("请输入6位数密码");
-                                            return;
-                                        }
-//                                        if(masterPassword.equals("")||newPassword.equals("")||newPassword2.equals(""))
-//                                        {
-//                                            Toast.makeText(ConfigActivity.this,"输入密码不能为空",Toast.LENGTH_SHORT).show();
-//                                            return;
-//                                        }
                                         if(!newPassword.equals(newPassword2))
                                         {
-                                            newPassword2Text.setError("两次密码输入不一致");
-//                                            Toast.makeText(ConfigActivity.this,"两次密码输入不一致",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ConfigActivity.this,"两次密码输入不一致",Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                         checkPassword(masterPassword, newPassword);
@@ -260,16 +244,16 @@ public class ConfigActivity extends Activity {
                         final AlertDialog.Builder builder2 =new AlertDialog.Builder(ConfigActivity.this);
                         builder2.setView(view2).
                                 setTitle("获取住户和访客密码").
-                                setIcon(R.drawable.ic_congif_password).
+                                setIcon(R.drawable.ic_config_share).
                                 setNegativeButton("取消",null).
                                 setPositiveButton("完成", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         final String masterPassword =((EditText)view2.findViewById(R.id.config_GetPwd_Master_Password)).
                                                 getText().toString();
-                                        if(masterPassword.equals(""))
+                                        if(masterPassword.length()!=6)
                                         {
-                                            Toast.makeText(ConfigActivity.this,"输入密码不能为空",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ConfigActivity.this,"请输入6位数密码",Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                         GetPwd(masterPassword);
@@ -315,7 +299,7 @@ public class ConfigActivity extends Activity {
         private String password;
         public CheckPasswordThread(BluetoothDevice device,String masterPassword,String newPassword) {
             Method m;
-            this.password=("02"+toHex(masterPassword)+"23");
+            this.password=("02"+toHex(masterPassword)+string_userClass+toHex(newPassword)+"23");
             mBleDevice = mBleManager.convertBleDevice(device);
         }
 
@@ -342,16 +326,6 @@ public class ConfigActivity extends Activity {
 
                 @Override
                 public void onConnectSuccess(final BleDevice bleDevice,final BluetoothGatt gatt, int status) {
-//                    try {
-//                    OutputStream outputStream = mSocket.getOutputStream();
-//                    InputStream inputStream = mSocket.getInputStream();
-//                    outputStream.write(getHexBytes(password));
-//                    outputStream.flush();
-//                    inputStream2String(inputStream);
-//
-//
-//                } catch (IOException e) {
-//                }
                     mBleManager.notify(
                             bleDevice,
                             "0000ffe0-0000-1000-8000-00805f9b34fb",
@@ -375,12 +349,8 @@ public class ConfigActivity extends Activity {
                                 @Override
                                 public void onCharacteristicChanged(byte[] data) {
                                     try{
-                                        msgTypeTag++;
                                         inputStreamString(data);
-                                        if(isGetMsgOver)
-                                        {
-                                            StopNotify(bleDevice);
-                                        }
+                                        StopNotify(bleDevice);
                                     }
                                     catch (IOException e) {
                                     }
@@ -405,7 +375,7 @@ public class ConfigActivity extends Activity {
                                     Log.w("--------发送消息失败！----", "btsocket");
                                     Message message = new Message();
                                     message.what = 1;
-                                    mString="发送开锁指令失败！";
+                                    mString="发送修改指令失败！";
                                     mHandler.sendMessage(message);
                                 }
                             });
@@ -458,7 +428,7 @@ public class ConfigActivity extends Activity {
 
                 @Override
                 public void onConnectSuccess(final BleDevice bleDevice,final BluetoothGatt gatt, int status) {
-                    isGetMsgOver=false;
+//                    isGetMsgOver=false;
                     mBleManager.notify(
                             bleDevice,
                             "0000ffe0-0000-1000-8000-00805f9b34fb",
@@ -481,12 +451,8 @@ public class ConfigActivity extends Activity {
                                 @Override
                                 public void onCharacteristicChanged(byte[] data) {
                                     try{
-                                        msgTypeTag++;
                                         inputStreamString(data);
-                                        if(isGetMsgOver)
-                                        {
-                                            StopNotify(bleDevice);
-                                        }
+                                        StopNotify(bleDevice);
                                     }
                                     catch (IOException e) {
                                     }
@@ -511,7 +477,7 @@ public class ConfigActivity extends Activity {
                                     Log.w("--------发送消息失败！----", "btsocket");
                                     Message message = new Message();
                                     message.what = 1;
-                                    mString="发送开锁指令失败！";
+                                    mString="发送查看指令失败！";
                                     mHandler.sendMessage(message);
                                 }
                             });
@@ -532,38 +498,16 @@ public class ConfigActivity extends Activity {
     }
 
     public void clean( ){
-        isGetMsgOver=false;
-        msgTypeTag=0;
+//        isGetMsgOver=false;
         mString="";
-        mLoginPwd="";
-        mUserPwd="";
+//        mLoginPwd="";
+//        mUserPwd="";
     }
 
     public  void inputStreamString (byte[]  b) throws IOException   {
         Log.w("inputStream.available", "  " + b.length);
         mString=new String(b) ;
-        if(msgTypeTag==1){
-            if(mString.equals("1")){
-                isGetMsgOver=true;
-            }else if(mString.equals("2")){
-                return;
-            }else{
-                isGetMsgOver=true;
-            }
-        }else if(msgTypeTag>1&&msgTypeTag<=7)
-        {
-            mUserPwd+=mString;
-            return;
-        }else if(msgTypeTag>7&&msgTypeTag<=12)
-        {
-            mLoginPwd+=mString;
-            return;
-        }
-        else if(msgTypeTag==13)
-        {
-            mLoginPwd+=mString;
-            isGetMsgOver=true;
-        }
+//        Toast.makeText(ConfigActivity.this,mString,Toast.LENGTH_SHORT).show();
         Message message =new Message();//创建一个Message
         message.what=0;
         Log.w("mString +","-"+mString+"-");

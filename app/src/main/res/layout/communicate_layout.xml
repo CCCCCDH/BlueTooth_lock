@@ -18,7 +18,7 @@
         android:id="@+id/bt_addNewBluetooth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="查看已配对设备"
+        android:text="搜索附近蓝牙设备"
         android:textSize="20dp"
         android:layout_gravity="center_horizontal"/>
 

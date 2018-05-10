@@ -38,7 +38,7 @@ public class FindNewDeviceActivity extends Activity {
     private  ArrayList<Beacon> devices;
     private List<String> lstDevices = new ArrayList<String>();
     private ArrayAdapter<String> adtDevices;
-//    static final String SPP_UUID = "00001101-0000-1000-8000-00805F9B34FB";
+    static final String SPP_UUID = "00001101-0000-1000-8000-00805F9B34FB";
     private Runnable doDiscoveryWork =new Runnable() {
         @Override
         public void run() {
@@ -50,7 +50,7 @@ public class FindNewDeviceActivity extends Activity {
 
     public void setPairingDevices() {
         Set<BluetoothDevice> devices=localBluetoothAdapter.getBondedDevices();
-         devices.clear();
+        devices.clear();
         mAdapter.notifyDataSetChanged();
         if(devices.size()>0){ //存在已配对过的设备
             for(Iterator<BluetoothDevice> it=devices.iterator();it.hasNext();){
@@ -73,12 +73,10 @@ public class FindNewDeviceActivity extends Activity {
             }
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 Log.w("find:----","找到设备");
-                // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // 搜索没有配对过的蓝牙设备
 
                 if(device.getBondState()==BluetoothDevice.BOND_NONE) {
-                    //Beacon beacon = new Beacon(device.getName(), device.getAddress());
                     String str=device.getName()+"\n"+device.getAddress();
                     if(lstDevices.indexOf(str)==-1){
                         Log.w("address:----",device.getAddress());
@@ -133,7 +131,7 @@ public class FindNewDeviceActivity extends Activity {
 //        Log.w("start:----","开始搜索");
 
         devices=new ArrayList<Beacon>();
-        mAdapter=new DeviceListAdapter(FindNewDeviceActivity.this,devices);
+        //mAdapter=new DeviceListAdapter(FindNewDeviceActivity.this,devices);
         localBluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
         doDiscoveryWork.run();
 
@@ -168,7 +166,7 @@ public class FindNewDeviceActivity extends Activity {
                         setPairingDevices();
                         FindNewDeviceActivity.this.finish();
                     }else{
-                        Toast.makeText(FindNewDeviceActivity.this,"未配对",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FindNewDeviceActivity.this,"配对失败",Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (Exception e) {

@@ -77,7 +77,7 @@ public class MyLockFragment extends Fragment  {
     private  static SharedPreferences pre;//用来读取保存的密码
     private  static SharedPreferences.Editor editor;
     private  static Boolean isRemember;
-    private  static Boolean isGetMsgOver;
+//    private  static Boolean isGetMsgOver;
     private BleManager mBleManager;
     @Override
     public void onStart() {
@@ -159,24 +159,6 @@ public class MyLockFragment extends Fragment  {
                         }else{
                             Toast.makeText(context, "未知消息！", Toast.LENGTH_SHORT).show();
                         }
-//                        if(mString.equals("1")) {
-//                            Log.w("mhandler open class:", "----class:主人");
-//                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
-//                            //插入一条开锁记录
-//                            dbManager.insertRecord(1);
-//                            //当开锁成功时，检查复选框被选中
-//                        }else if(mString.equals("2")){
-//                            Log.w("mhandler open class:", "----class:常驻人员");
-//                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
-//                            //插入一条开锁记录
-//                            dbManager.insertRecord(2);
-//                        }else if(mString.equals("3")){
-//                            Log.w("mhandler open class:", "----class:访客");
-//                            Toast.makeText(context, "开锁成功！", Toast.LENGTH_SHORT).show();
-//                            //插入一条开锁记录
-//                            dbManager.insertRecord(3);
-//                        }else
-//                            Toast.makeText(context, "密码错误！", Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
                         Toast.makeText(context, "开锁失败！", Toast.LENGTH_SHORT).show();
@@ -188,7 +170,7 @@ public class MyLockFragment extends Fragment  {
     }
 
     public void clean( ){
-        isGetMsgOver=false;
+//        isGetMsgOver=false;
         mString="";
     }
 
@@ -360,10 +342,7 @@ public class MyLockFragment extends Fragment  {
                         public void onCharacteristicChanged(byte[] data) {
                             try{
                                 inputStreamString(data);
-                                if(isGetMsgOver)
-                                {
-                                    StopNotify(bleDevice);
-                                }
+                                StopNotify(bleDevice);
 //                                inputStreamString(gatt.getService(
 //                                        UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb")).getCharacteristic(
 //                                        UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb")).getValue());
@@ -391,7 +370,7 @@ public class MyLockFragment extends Fragment  {
                                 Log.w("--------发送消息失败！----", "btsocket");
                                 Message message = new Message();
                                 message.what = 1;
-                                mString="发送开锁指令失败！";
+                                mString="发送指令失败！";
                                 mHandler.sendMessage(message);
                             }
                         });
@@ -445,7 +424,7 @@ public class MyLockFragment extends Fragment  {
             Message message =new Message();//创建一个Message
             Log.w("inputStream.available", "  " + b.length);
             mString=new String(b);
-            isGetMsgOver=true;
+//            isGetMsgOver=true;
             message.what=0;
             Log.w("mString +","-"+mString+"-");
             mHandler.sendMessage(message);
@@ -606,7 +585,8 @@ public class MyLockFragment extends Fragment  {
                         open_password = editText_password.getText().toString();
                         if(open_password.length()!=6)
                         {
-                            editText_password.setError("请输入6位数密码");
+                            Toast.makeText(context, "请输入6位数密码", Toast.LENGTH_SHORT).show();
+//                            editText_password.setError("请输入6位数密码");
                             return;
                         }
 
