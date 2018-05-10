@@ -64,36 +64,36 @@
 
         </TableRow>
 
-        <TableRow
-            android:layout_marginTop="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="用户级别："
-                android:textSize="20sp"/>
-            <RadioGroup
-                android:orientation="horizontal"
-                android:id="@+id/rg">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="主人"
-                    android:id="@+id/class_host"/>
+        <!--<TableRow-->
+            <!--android:layout_marginTop="15dp">-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="用户级别："-->
+                <!--android:textSize="20sp"/>-->
+            <!--<RadioGroup-->
+                <!--android:orientation="horizontal"-->
+                <!--android:id="@+id/rg">-->
+                <!--<RadioButton-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="主人"-->
+                    <!--android:id="@+id/class_host"/>-->
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="住户"
-                    android:id="@+id/class_live"/>
+                <!--<RadioButton-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="住户"-->
+                    <!--android:id="@+id/class_live"/>-->
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="访客"
-                    android:id="@+id/class_visitor"/>
-            </RadioGroup>
+                <!--<RadioButton-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="访客"-->
+                    <!--android:id="@+id/class_visitor"/>-->
+            <!--</RadioGroup>-->
 
-        </TableRow>
+        <!--</TableRow>-->
     </TableLayout>
 
     <Button

@@ -24,7 +24,7 @@ public class MyInformation extends Activity{
     private String name ;
     private String phone;
     private String address;
-    private String userClass;
+//    private String userClass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class MyInformation extends Activity{
         textView_name=(TextView)findViewById(R.id.userCenter_information_name);
         textView_phone=(TextView)findViewById(R.id.userCenter_information_phone);
         textView_address=(TextView)findViewById(R.id.userCenter_information_address);
-        textView_userClass=(TextView)findViewById(R.id.userCenter_information_userClass);
+//        textView_userClass=(TextView)findViewById(R.id.userCenter_information_userClass);
         bt_Edit=(Button)findViewById(R.id.userCenter_information_btEdit);
         //为编辑按钮添加点击事件
         bt_Edit.setOnClickListener(new View.OnClickListener() {
@@ -51,13 +51,13 @@ public class MyInformation extends Activity{
         name=sp.getString("name","");
         phone=sp.getString("phone","");
         address=sp.getString("address","");
-        userClass=sp.getString("class","");
+//        userClass=sp.getString("class","");
 
         //添加至textview
         textView_name.setText(name);
         textView_phone.setText(phone);
         textView_address.setText(address);
-        textView_userClass.setText(userClass);
+//        textView_userClass.setText(userClass);
     }
         //接受从Edit活动中传递回来的数据
     @Override
@@ -67,7 +67,7 @@ public class MyInformation extends Activity{
             textView_name.setText(data.getString("name"));
             textView_phone.setText(data.getString("phone"));
             textView_address.setText(data.getString("address"));
-            textView_userClass.setText(data.getString("class"));
+//            textView_userClass.setText(data.getString("class"));
         }
     }
 }
