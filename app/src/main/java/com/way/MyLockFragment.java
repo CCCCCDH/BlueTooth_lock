@@ -604,6 +604,11 @@ public class MyLockFragment extends Fragment  {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         open_password = editText_password.getText().toString();
+                        if(open_password.length()!=6)
+                        {
+                            editText_password.setError("请输入6位数密码");
+                            return;
+                        }
 
                         if(rememberPass.isChecked()){
                             Log.w("isChecked---","YES  "+count);
