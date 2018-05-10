@@ -1,14 +1,20 @@
 package com.way.mylock;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.provider.Settings;
 import android.bluetooth.BluetoothDevice;
+import android.content.DialogInterface;
 import android.content.BroadcastReceiver;
+import android.location.LocationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,6 +42,7 @@ public class FindNewDeviceActivity extends Activity {
     private DeviceListAdapter mAdapter;
     private ProgressDialog  searchDialog;
     private  ArrayList<Beacon> devices;
+    private static final int REQUEST_CODE_OPEN_GPS = 1;
     private List<String> lstDevices = new ArrayList<String>();
     private ArrayAdapter<String> adtDevices;
     static final String SPP_UUID = "00001101-0000-1000-8000-00805F9B34FB";
@@ -43,10 +50,44 @@ public class FindNewDeviceActivity extends Activity {
         @Override
         public void run() {
             //开始搜索
-            doDiscovery();
+            Toast.makeText(FindNewDeviceActivity.this,"附近没有可用设备",Toast.LENGTH_SHORT).show();
+            onPermissionGranted();
         }
     };
 
+    private boolean checkGPSIsOpen() {
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager == null)
+            return false;
+        return locationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER);
+    }
+    private void onPermissionGranted() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !checkGPSIsOpen()) {
+                new AlertDialog.Builder(this)
+                        .setTitle("提示")
+                        .setMessage("当前手机扫描蓝牙需要打开定位功能")
+                        .setNegativeButton("取消",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                })
+                        .setPositiveButton("前往设置",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                        startActivityForResult(intent, REQUEST_CODE_OPEN_GPS);
+                                    }
+                                })
+
+                        .setCancelable(false)
+                        .show();
+            } else {
+                doDiscovery();
+            }
+    }
 
     public void setPairingDevices() {
         Set<BluetoothDevice> devices=localBluetoothAdapter.getBondedDevices();
@@ -73,10 +114,12 @@ public class FindNewDeviceActivity extends Activity {
             }
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 Log.w("find:----","找到设备");
+                // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // 搜索没有配对过的蓝牙设备
 
                 if(device.getBondState()==BluetoothDevice.BOND_NONE) {
+                    //Beacon beacon = new Beacon(device.getName(), device.getAddress());
                     String str=device.getName()+"\n"+device.getAddress();
                     if(lstDevices.indexOf(str)==-1){
                         Log.w("address:----",device.getAddress());
