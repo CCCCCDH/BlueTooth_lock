@@ -108,9 +108,9 @@ public class ConfigActivity extends Activity {
 
                             final AlertDialog.Builder builder3 =new AlertDialog.Builder(ConfigActivity.this);
 
-                            EditText editText_Userword=(EditText)view3.findViewById(R.id.config_GetPwd_Password_User);
+                            TextView editText_Userword=(TextView)view3.findViewById(R.id.config_GetPwd_Password_User);
                             editText_Userword.setText(mUserPwd);
-                            EditText editText_Loginword=(EditText)view3.findViewById(R.id.config_GetPwd_Password_Login);
+                            TextView editText_Loginword=(TextView)view3.findViewById(R.id.config_GetPwd_Password_Login);
                             editText_Loginword.setText(mLoginPwd);
 
                             builder3.setView(view3).
@@ -214,20 +214,37 @@ public class ConfigActivity extends Activity {
                                         {
                                             string_userClass = "01";
                                         }
-                                        final String masterPassword =((EditText)view1.findViewById(R.id.config_changePassword_master)).
-                                                getText().toString();
-                                        final String newPassword =((EditText)view1.findViewById(R.id.config_changePassword_new1)).
-                                                getText().toString();
-                                        final String newPassword2 =((EditText)view1.findViewById(R.id.config_changePassword_new2)).
-                                                getText().toString();
-                                        if(masterPassword.equals("")||newPassword.equals("")||newPassword2.equals(""))
+                                        EditText masterPasswordText = (EditText)view1.findViewById(R.id.config_changePassword_master);
+                                        EditText newPasswordText = (EditText)view1.findViewById(R.id.config_changePassword_master);
+                                        EditText newPassword2Text = (EditText)view1.findViewById(R.id.config_changePassword_master);
+
+                                        String masterPassword =masterPasswordText.getText().toString();
+                                        String newPassword =newPasswordText.getText().toString();
+                                        String newPassword2 =newPassword2Text.getText().toString();
+                                        if(masterPassword.length()!=6)
                                         {
-                                            Toast.makeText(ConfigActivity.this,"输入密码不能为空",Toast.LENGTH_SHORT).show();
+                                            masterPasswordText.setError("请输入6位数密码");
                                             return;
                                         }
+                                        if(newPassword.length()!=6)
+                                        {
+                                            newPasswordText.setError("请输入6位数密码");
+                                            return;
+                                        }
+                                        if(newPassword2.length()!=6)
+                                        {
+                                            newPassword2Text.setError("请输入6位数密码");
+                                            return;
+                                        }
+//                                        if(masterPassword.equals("")||newPassword.equals("")||newPassword2.equals(""))
+//                                        {
+//                                            Toast.makeText(ConfigActivity.this,"输入密码不能为空",Toast.LENGTH_SHORT).show();
+//                                            return;
+//                                        }
                                         if(!newPassword.equals(newPassword2))
                                         {
-                                            Toast.makeText(ConfigActivity.this,"两次密码输入不一致",Toast.LENGTH_SHORT).show();
+                                            newPassword2Text.setError("两次密码输入不一致");
+//                                            Toast.makeText(ConfigActivity.this,"两次密码输入不一致",Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                         checkPassword(masterPassword, newPassword);
