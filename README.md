@@ -1,4 +1,4 @@
-# BleBluetoothDoorLock v0.1
+# BleBluetoothDoorLock v0.5
 
 ## 背景
 ```
@@ -29,11 +29,14 @@ go就怎么用怎么简单舒服
 1. 开锁
 2. 改密码
 3. 显示密码
-
+说明：默认密码
+主人密码：128128
+住户密码：281281
+访客密码：812812
 
 ```
 硬件：cc2541模块 51单片机 5v继电器 12v电磁锁 12v门禁电源
-硬件代码放在目录下的 BleBluetoothDoorLock.c里，不会硬件的看买的51单片机送的光盘教程
+硬件代码放在目录下的 BleBluetoothDoorLock.c里
 
 附上参考的文章：
 https://blog.csdn.net/sunzhaojie613/article/details/51511054
