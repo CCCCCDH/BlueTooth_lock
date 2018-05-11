@@ -15,9 +15,6 @@ import android.widget.Toast;
 
 import com.way.pattern.R;
 
-/**
- * Created by wise on 2015/10/7.
- */
 public class MainActivity extends Activity implements View.OnClickListener{
 
     //找到三个tab

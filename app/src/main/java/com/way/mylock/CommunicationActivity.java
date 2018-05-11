@@ -30,9 +30,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
-/**
- * Created by wise on 2015/10/9.
- */
+
 public class CommunicationActivity extends Activity  implements DeviceListAdapter.Callbacks {
     private ListView devices_listView;
     private DeviceListAdapter mAdapter;
@@ -137,7 +135,7 @@ public class CommunicationActivity extends Activity  implements DeviceListAdapte
                 ArrayList_devices.add(beacon0);
             }
         }else{   //不存在已经配对的蓝牙设备
-            Toast.makeText(this,"不存在已配对设备",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"请扫描周围蓝牙设备",Toast.LENGTH_SHORT).show();
         }
 
     }

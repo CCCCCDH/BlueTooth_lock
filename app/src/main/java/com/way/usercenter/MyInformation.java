@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import com.way.pattern.R;
 
-/**
- * Created by wise on 2015/10/8.
- */
 public class MyInformation extends Activity{
     private TextView textView_name;
     private TextView textView_phone;
@@ -35,7 +32,6 @@ public class MyInformation extends Activity{
         textView_name=(TextView)findViewById(R.id.userCenter_information_name);
         textView_phone=(TextView)findViewById(R.id.userCenter_information_phone);
         textView_address=(TextView)findViewById(R.id.userCenter_information_address);
-//        textView_userClass=(TextView)findViewById(R.id.userCenter_information_userClass);
         bt_Edit=(Button)findViewById(R.id.userCenter_information_btEdit);
         //为编辑按钮添加点击事件
         bt_Edit.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +63,6 @@ public class MyInformation extends Activity{
             textView_name.setText(data.getString("name"));
             textView_phone.setText(data.getString("phone"));
             textView_address.setText(data.getString("address"));
-//            textView_userClass.setText(data.getString("class"));
         }
     }
 }

@@ -1,8 +1,5 @@
 package com.way.mylock;
 
-/**
- * Created by wise on 2015/11/8.
- */
 public class Record {
     private String name;
     private String time;

@@ -13,15 +13,11 @@ import android.widget.RadioGroup;
 
 import com.way.pattern.R;
 
-/**
- * Created by wise on 2015/10/8.
- */
 public class MyInformationEdit extends Activity {
     private EditText name;
     private EditText phone;
     private EditText address;
     private RadioGroup user_class;
-//    private String string_userClass;
     private Button bt_finish;
     private RadioButton radioButton;
     @Override
@@ -37,22 +33,6 @@ public class MyInformationEdit extends Activity {
         address=(EditText)findViewById(R.id.userCenter_informationEdit_address);
 //        user_class=(RadioGroup)findViewById(R.id.rg);
         bt_finish=(Button)findViewById(R.id.userCenter_information_btFinish);
-//        user_class.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                switch (i) {
-//                    case R.id.class_host:
-//                        string_userClass = "主人";
-//                        break;
-//                    case R.id.class_live:
-//                        string_userClass = "住户";
-//                        break;
-//                    case R.id.class_visitor:
-//                        string_userClass = "访客";
-//                        break;
-//                }
-//            }
-//        });
 
        //设置上次编写的内容
         setContent();
@@ -98,28 +78,5 @@ public class MyInformationEdit extends Activity {
             phone.setText(phone0);
         if(!address0.equals("-1"))
             address.setText(address0);
-//        if(!userClass0.equals("1")){
-//            if(userClass0.equals("主人"))
-//                id=1;
-//            else if(userClass0.equals("住户"))
-//                id=2;
-//            else if(userClass0.equals("访客"))
-//                    id=3;
-//
-//            switch (id){
-//                case 1 :
-//                    radioButton=(RadioButton)this.findViewById(R.id.class_host);
-//                    break;
-//                case 2 :
-//                    radioButton=(RadioButton)this.findViewById(R.id.class_live);
-//                    break;
-//                case 3 :
-//                    radioButton=(RadioButton)this.findViewById(R.id.class_visitor);
-//                    break;
-//            }
-//            if(id!=0)
-//               radioButton.setChecked(true);
-//        }
-
     }
 }

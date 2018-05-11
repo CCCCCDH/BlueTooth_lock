@@ -35,8 +35,9 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.way.MainActivity"
-            android:label="send_password" />
+        <activity android:name="com.way.MainActivity"/>
+            <!--android:label="send_password" -->
+            <!--/>-->
          <activity android:name="com.way.usercenter.MyInformation"/>
         <activity android:name="com.way.usercenter.MyInformationEdit"/>
         <activity android:name="com.way.mylock.CommunicationActivity"/>

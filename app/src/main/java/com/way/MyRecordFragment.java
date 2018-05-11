@@ -21,9 +21,6 @@ import com.way.sqlite.DBManager;
 
 import java.util.ArrayList;
 
-/**
- * Created by wise on 2015/10/7.
- */
 public class MyRecordFragment extends Fragment {
     private ListView recordListView;
     private Button btClear;

@@ -5,9 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by wise on 2015/10/20.
- */
+
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "bluetooth.db";
     public static final String DB_TABLE_NAME = "devices";

@@ -18,9 +18,7 @@ import java.util.ArrayList;
 
 import javax.security.auth.callback.Callback;
 
-/**
- * Created by wise on 2015/10/8.
- */
+
 public class DeviceListAdapter extends BaseAdapter {
     private Callbacks mCallback;
     private BluetoothAdapter mBluetoothAdapter=BluetoothAdapter.getDefaultAdapter();

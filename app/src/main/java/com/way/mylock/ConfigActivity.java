@@ -40,17 +40,12 @@ import com.clj.fastble.exception.BleException;
 import com.clj.fastble.utils.HexUtil;
 import com.clj.fastble.data.BleDevice;
 
-/**
- * Created by wise on 2015/10/20.
- */
+
 public class ConfigActivity extends Activity {
     private ListView configListView;
     private TextView configDeviceName;
     private SimpleAdapter mAdapter;
-//    private int msgTypeTag=0;
     private String mString="";
-//    private String mUserPwd="";
-//    private String mLoginPwd="";
     private String string_userClass="";
     private BluetoothAdapter mBluetoothAdapter =BluetoothAdapter.getDefaultAdapter();
     private String[] listContext =new String[]{"修改设备名称","修改密码","分享密钥","删除设备"};
@@ -58,7 +53,6 @@ public class ConfigActivity extends Activity {
     R.drawable.ic_config_share,R.drawable.ic_config_delete};
     private String configedName=""; //被管理设备的名称
     private String configedAddress=""; //被管理设备的地址
-//    private  static Boolean isGetMsgOver;
     private ProgressDialog progressDialog;
     private static android.os.Handler mHandler;
     private BleManager mBleManager;
@@ -78,8 +72,8 @@ public class ConfigActivity extends Activity {
         mBleManager.init(this.getApplication());
         mBleManager
                 .enableLog(true)
-                .setReConnectCount(1, 5000)
-                .setOperateTimeout(5000);
+                .setReConnectCount(0, 1000)
+                .setOperateTimeout(2000);
         //打开数据库
         dbManager =new DBManager(ConfigActivity.this);
         //handler
@@ -124,12 +118,6 @@ public class ConfigActivity extends Activity {
 
                     case 1:
                          Toast.makeText(ConfigActivity.this,mString,Toast.LENGTH_SHORT).show();
-                        //在结尾把Socket关闭
-//                        try{
-//                            mSocket.close();
-//                            Log.w("mHandler----","mSocket has been closed");
-//                        }   catch (Exception e){
-//                        }
                         break;
                 }
                 clean();
@@ -339,18 +327,20 @@ public class ConfigActivity extends Activity {
                                 @Override
                                 public void onNotifyFailure(final BleException exception) {
                                     Log.w("--------接收消息失败！----", "btsocket");
-                                    StopNotify(bleDevice);
+//                                    StopNotify(bleDevice);
                                     Message message = new Message();
                                     message.what = 1;
                                     mString="接收门锁消息失败！";
                                     mHandler.sendMessage(message);
+                                    mBleManager.disconnectAllDevice();
                                 }
 
                                 @Override
                                 public void onCharacteristicChanged(byte[] data) {
                                     try{
                                         inputStreamString(data);
-                                        StopNotify(bleDevice);
+//                                        StopNotify(bleDevice);
+                                        mBleManager.disconnectAllDevice();
                                     }
                                     catch (IOException e) {
                                     }
@@ -371,12 +361,13 @@ public class ConfigActivity extends Activity {
 
                                 @Override
                                 public void onWriteFailure(final BleException exception) {
-                                    StopNotify(bleDevice);
+//                                    StopNotify(bleDevice);
                                     Log.w("--------发送消息失败！----", "btsocket");
                                     Message message = new Message();
                                     message.what = 1;
                                     mString="发送修改指令失败！";
                                     mHandler.sendMessage(message);
+                                    mBleManager.disconnectAllDevice();
                                 }
                             });
                 }
@@ -424,6 +415,7 @@ public class ConfigActivity extends Activity {
                     message.what = 1;
                     mString="连接失败！";
                     mHandler.sendMessage(message);
+                    mBleManager.disconnectAllDevice();
                 }
 
                 @Override
@@ -446,13 +438,15 @@ public class ConfigActivity extends Activity {
                                     message.what = 1;
                                     mString="接收门锁消息失败！";
                                     mHandler.sendMessage(message);
+                                    mBleManager.disconnectAllDevice();
                                 }
 
                                 @Override
                                 public void onCharacteristicChanged(byte[] data) {
                                     try{
                                         inputStreamString(data);
-                                        StopNotify(bleDevice);
+//                                        StopNotify(bleDevice);
+                                        mBleManager.disconnectAllDevice();
                                     }
                                     catch (IOException e) {
                                     }
@@ -473,12 +467,13 @@ public class ConfigActivity extends Activity {
 
                                 @Override
                                 public void onWriteFailure(final BleException exception) {
-                                    StopNotify(bleDevice);
+//                                    StopNotify(bleDevice);
                                     Log.w("--------发送消息失败！----", "btsocket");
                                     Message message = new Message();
                                     message.what = 1;
                                     mString="发送查看指令失败！";
                                     mHandler.sendMessage(message);
+                                    mBleManager.disconnectAllDevice();
                                 }
                             });
                 }
@@ -497,17 +492,13 @@ public class ConfigActivity extends Activity {
                 "0000ffe1-0000-1000-8000-00805f9b34fb");
     }
 
-    public void clean( ){
-//        isGetMsgOver=false;
+    public void clean(){
         mString="";
-//        mLoginPwd="";
-//        mUserPwd="";
     }
 
     public  void inputStreamString (byte[]  b) throws IOException   {
         Log.w("inputStream.available", "  " + b.length);
         mString=new String(b) ;
-//        Toast.makeText(ConfigActivity.this,mString,Toast.LENGTH_SHORT).show();
         Message message =new Message();//创建一个Message
         message.what=0;
         Log.w("mString +","-"+mString+"-");

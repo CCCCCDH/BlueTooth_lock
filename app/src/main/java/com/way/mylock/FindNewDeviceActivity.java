@@ -21,8 +21,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.support.v4.content.ContextCompat;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 
-import com.way.MainActivity;
 import com.way.pattern.R;
 
 import java.lang.reflect.Method;
@@ -30,11 +32,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
-/**
- * Created by wise on 2015/10/13.
- */
+
 public class FindNewDeviceActivity extends Activity {
     private ListView find_device_listview;
     private BluetoothAdapter localBluetoothAdapter;
@@ -43,6 +42,7 @@ public class FindNewDeviceActivity extends Activity {
     private ProgressDialog  searchDialog;
     private  ArrayList<Beacon> devices;
     private static final int REQUEST_CODE_OPEN_GPS = 1;
+    private static final int REQUEST_CODE_PERMISSION_LOCATION = 2;
     private List<String> lstDevices = new ArrayList<String>();
     private ArrayAdapter<String> adtDevices;
     static final String SPP_UUID = "00001101-0000-1000-8000-00805F9B34FB";
@@ -50,43 +50,71 @@ public class FindNewDeviceActivity extends Activity {
         @Override
         public void run() {
             //开始搜索
-            Toast.makeText(FindNewDeviceActivity.this,"附近没有可用设备",Toast.LENGTH_SHORT).show();
-            onPermissionGranted();
+            checkPermissions();
+//            onPermissionGranted();
+//            doDiscovery();
         }
     };
 
+    private void checkPermissions() {
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (!bluetoothAdapter.isEnabled()) {
+            Toast.makeText(this, getString(R.string.please_open_blue), Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+        List<String> permissionDeniedList = new ArrayList<>();
+        for (String permission : permissions) {
+            int permissionCheck = ContextCompat.checkSelfPermission(this, permission);
+            if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                onPermissionGranted(permission);
+            } else {
+                permissionDeniedList.add(permission);
+            }
+        }
+        if (!permissionDeniedList.isEmpty()) {
+            String[] deniedPermissions = permissionDeniedList.toArray(new String[permissionDeniedList.size()]);
+            ActivityCompat.requestPermissions(this, deniedPermissions, REQUEST_CODE_PERMISSION_LOCATION);
+        }
+    }
     private boolean checkGPSIsOpen() {
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         if (locationManager == null)
             return false;
         return locationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER);
     }
-    private void onPermissionGranted() {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !checkGPSIsOpen()) {
-                new AlertDialog.Builder(this)
-                        .setTitle("提示")
-                        .setMessage("当前手机扫描蓝牙需要打开定位功能")
-                        .setNegativeButton("取消",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                })
-                        .setPositiveButton("前往设置",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                        startActivityForResult(intent, REQUEST_CODE_OPEN_GPS);
-                                    }
-                                })
+    private void onPermissionGranted(String permission) {
+        switch (permission) {
+            case Manifest.permission.ACCESS_FINE_LOCATION:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !checkGPSIsOpen()) {
+                    new AlertDialog.Builder(this)
+                            .setTitle(R.string.notifyTitle)
+                            .setMessage(R.string.gpsNotifyMsg)
+                            .setNegativeButton(R.string.cancel,
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                        }
+                                    })
+                            .setPositiveButton(R.string.setting,
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                            startActivityForResult(intent, REQUEST_CODE_OPEN_GPS);
+                                        }
+                                    })
 
-                        .setCancelable(false)
-                        .show();
-            } else {
-                doDiscovery();
-            }
+                            .setCancelable(false)
+                            .show();
+                } else {
+                    doDiscovery();
+//                    startScan();
+                }
+                break;
+        }
     }
 
     public void setPairingDevices() {
@@ -101,7 +129,7 @@ public class FindNewDeviceActivity extends Activity {
                 mAdapter.notifyDataSetChanged();
             }
         }else{   //不存在已经配对的蓝牙设备
-            Toast.makeText(this,"不存在已配对设备",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"请扫描附近蓝牙设备",Toast.LENGTH_SHORT).show();
         }
     }
     // Create a BroadcastReceiver for ACTION_FOUND
@@ -119,11 +147,8 @@ public class FindNewDeviceActivity extends Activity {
                 // 搜索没有配对过的蓝牙设备
 
                 if(device.getBondState()==BluetoothDevice.BOND_NONE) {
-                    //Beacon beacon = new Beacon(device.getName(), device.getAddress());
                     String str=device.getName()+"\n"+device.getAddress();
                     if(lstDevices.indexOf(str)==-1){
-                        Log.w("address:----",device.getAddress());
-                        Log.w("name:----",device.getName());
                         lstDevices.add(str);
                         adtDevices.notifyDataSetChanged();
                     }
@@ -150,7 +175,7 @@ public class FindNewDeviceActivity extends Activity {
                 if(find_device_listview.getCount()==0){
                     Toast.makeText(FindNewDeviceActivity.this,"附近没有可用设备",Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(FindNewDeviceActivity.this,"搜索到"+find_device_listview.getCount()+"台设备",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(FindNewDeviceActivity.this,"搜索到"+find_device_listview.getCount()+"台设备",Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -162,16 +187,6 @@ public class FindNewDeviceActivity extends Activity {
         find_device_listview=(ListView)this.findViewById(R.id.find_device_list);
         adtDevices=new ArrayAdapter<String>(FindNewDeviceActivity.this,android.R.layout.simple_expandable_list_item_1,lstDevices);
         find_device_listview.setAdapter(adtDevices);
-
-
-        //find_device_listview.setAdapter(mAdapter);
-        //实例化数组
-
-//        searchDialog = new ProgressDialog(FindNewDeviceActivity.this);
-//        searchDialog.setMessage("正在搜索，请稍等……");
-//        searchDialog.setCancelable(false);
-//        searchDialog.show();
-//        Log.w("start:----","开始搜索");
 
         devices=new ArrayList<Beacon>();
         //mAdapter=new DeviceListAdapter(FindNewDeviceActivity.this,devices);
@@ -200,24 +215,21 @@ public class FindNewDeviceActivity extends Activity {
                                 .getMethod("createBond");
                         Log.d("BlueToothTestActivity", "开始配对");
                         returnValue = (Boolean) createBondMethod.invoke(btDev);
-                        if(returnValue)
-                            Toast.makeText(FindNewDeviceActivity.this,"输入Pin码",Toast.LENGTH_SHORT).show();
-
+                        if(returnValue) {
+//                            Toast.makeText(FindNewDeviceActivity.this, "输入Pin码", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     if(btDev.getBondState()==BluetoothDevice.BOND_BONDED){
                         Toast.makeText(FindNewDeviceActivity.this,"完成配对",Toast.LENGTH_SHORT).show();
                         setPairingDevices();
                         FindNewDeviceActivity.this.finish();
                     }else{
-                        Toast.makeText(FindNewDeviceActivity.this,"配对失败",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(FindNewDeviceActivity.this,"配对失败",Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
-
             }
         });
     }
@@ -257,10 +269,6 @@ public class FindNewDeviceActivity extends Activity {
         if(localBluetoothAdapter.isDiscovering()){
             localBluetoothAdapter.cancelDiscovery();
         }
-
         localBluetoothAdapter.startDiscovery();
-
     }
-
-
 }

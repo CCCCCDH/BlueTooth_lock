@@ -1,8 +1,7 @@
 package com.way;
 
 import android.app.ListFragment;
-
-
+import android.app.AlertDialog;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.view.ViewGroup;
 
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.way.pattern.CreateGesturePasswordActivity;
 import com.way.pattern.R;
@@ -23,9 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by wise on 2015/10/7.
- */
 public class UserCenterFragment extends ListFragment {
 
     private String TAG=UserCenterFragment.class.getName();
@@ -80,6 +77,23 @@ public class UserCenterFragment extends ListFragment {
                 break;
             case 2:
                 Log.e("TAG","this is the NO.3");
+                LayoutInflater inflater3 =LayoutInflater.from(this.getActivity());
+                final View view3 =inflater3.inflate(R.layout.user_help, null);
+
+                final AlertDialog.Builder builder3 =new AlertDialog.Builder(this.getActivity());
+
+                TextView editText_Masterword=(TextView)view3.findViewById(R.id.user_help_masterPwd);
+                editText_Masterword.setText("128128");
+                TextView editText_Userword=(TextView)view3.findViewById(R.id.user_help_userPwd);
+                editText_Userword.setText("281281");
+                TextView editText_Loginword=(TextView)view3.findViewById(R.id.user_help_loginPwd);
+                editText_Loginword.setText("812812");
+
+                builder3.setView(view3).
+                        setTitle("帮助").
+                        setIcon(R.drawable.ic_usercenter_help).
+                        setNegativeButton("关闭",null).show();
+
                 break;
         }
 
