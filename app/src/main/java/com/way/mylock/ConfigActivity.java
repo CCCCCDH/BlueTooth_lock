@@ -273,7 +273,6 @@ public class ConfigActivity extends Activity {
         BluetoothDevice bluetoothDevice=mBluetoothAdapter.getRemoteDevice(configedAddress);
         CheckPasswordThread thread = new CheckPasswordThread(bluetoothDevice,msterPassword,newPassword);
         thread.start();
-//        return isSame;
     }
 
     public String toHex(String arg) {//将6位string转换成12位hex string
@@ -327,20 +326,20 @@ public class ConfigActivity extends Activity {
                                 @Override
                                 public void onNotifyFailure(final BleException exception) {
                                     Log.w("--------接收消息失败！----", "btsocket");
-//                                    StopNotify(bleDevice);
                                     Message message = new Message();
                                     message.what = 1;
                                     mString="接收门锁消息失败！";
                                     mHandler.sendMessage(message);
-                                    mBleManager.disconnectAllDevice();
+                                    mBleManager.disconnect(bleDevice);
+                                    mBleManager.getBluetoothGatt(mBleDevice).close();
                                 }
 
                                 @Override
                                 public void onCharacteristicChanged(byte[] data) {
                                     try{
                                         inputStreamString(data);
-//                                        StopNotify(bleDevice);
-                                        mBleManager.disconnectAllDevice();
+                                        mBleManager.disconnect(bleDevice);
+                                        mBleManager.getBluetoothGatt(mBleDevice).close();
                                     }
                                     catch (IOException e) {
                                     }
@@ -361,13 +360,13 @@ public class ConfigActivity extends Activity {
 
                                 @Override
                                 public void onWriteFailure(final BleException exception) {
-//                                    StopNotify(bleDevice);
                                     Log.w("--------发送消息失败！----", "btsocket");
                                     Message message = new Message();
                                     message.what = 1;
                                     mString="发送修改指令失败！";
                                     mHandler.sendMessage(message);
-                                    mBleManager.disconnectAllDevice();
+                                    mBleManager.disconnect(bleDevice);
+                                    mBleManager.getBluetoothGatt(mBleDevice).close();
                                 }
                             });
                 }
@@ -415,7 +414,6 @@ public class ConfigActivity extends Activity {
                     message.what = 1;
                     mString="连接失败！";
                     mHandler.sendMessage(message);
-                    mBleManager.disconnectAllDevice();
                 }
 
                 @Override
@@ -438,15 +436,16 @@ public class ConfigActivity extends Activity {
                                     message.what = 1;
                                     mString="接收门锁消息失败！";
                                     mHandler.sendMessage(message);
-                                    mBleManager.disconnectAllDevice();
+                                    mBleManager.disconnect(bleDevice);
+                                    mBleManager.getBluetoothGatt(mBleDevice).close();
                                 }
 
                                 @Override
                                 public void onCharacteristicChanged(byte[] data) {
                                     try{
                                         inputStreamString(data);
-//                                        StopNotify(bleDevice);
-                                        mBleManager.disconnectAllDevice();
+                                        mBleManager.disconnect(bleDevice);
+                                        mBleManager.getBluetoothGatt(mBleDevice).close();
                                     }
                                     catch (IOException e) {
                                     }
@@ -462,7 +461,6 @@ public class ConfigActivity extends Activity {
 
                                 @Override
                                 public void onWriteSuccess(final int current, final int total, final byte[] justWrite) {
-
                                 }
 
                                 @Override
@@ -473,7 +471,8 @@ public class ConfigActivity extends Activity {
                                     message.what = 1;
                                     mString="发送查看指令失败！";
                                     mHandler.sendMessage(message);
-                                    mBleManager.disconnectAllDevice();
+                                    mBleManager.disconnect(bleDevice);
+                                    mBleManager.getBluetoothGatt(mBleDevice).close();
                                 }
                             });
                 }
@@ -483,13 +482,6 @@ public class ConfigActivity extends Activity {
                 }
             });
         }
-    }
-
-    public void StopNotify(BleDevice bleDevice){
-        mBleManager.stopNotify(
-                bleDevice,
-                "0000ffe0-0000-1000-8000-00805f9b34fb",
-                "0000ffe1-0000-1000-8000-00805f9b34fb");
     }
 
     public void clean(){
