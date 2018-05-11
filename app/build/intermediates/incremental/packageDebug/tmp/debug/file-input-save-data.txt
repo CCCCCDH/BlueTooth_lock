@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Fri May 11 22:26:08 CST 2018
+0.baseType=DIRECTORY
+0.base=F\:\\Androidtest\\test\\BlueTooth_lock\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+0.path=classes.dex
+0.set=DEX
+count=1

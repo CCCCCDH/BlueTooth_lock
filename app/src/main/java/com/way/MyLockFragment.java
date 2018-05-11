@@ -212,13 +212,11 @@ public class MyLockFragment extends Fragment  {
             mBleManager.connect(mBleDevice.getMac(), new BleGattCallback() {
                 @Override
                 public void onStartConnect() {
-                    // 开始连接
                 }
 
                 @Override
                 public void onConnectFail(BleDevice bleDevice, BleException exception) {
                     Log.w("--------连接失败！----", "btsocket");
-//                    StopNotify(bleDevice);
                     Message message = new Message();
                     message.what = 1;
                     mString="连接失败！";
