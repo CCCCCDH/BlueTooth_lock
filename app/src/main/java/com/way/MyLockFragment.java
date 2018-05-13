@@ -12,6 +12,7 @@ import android.bluetooth.BluetoothGattCallback;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -32,7 +33,8 @@ import android.widget.Toast;
 import com.way.mylock.Beacon;
 import com.way.blebluetooth.BleBlueToothManager;
 import com.way.blebluetooth.BleBlueToothCallBack;
-//import com.way.mylock.CommunicationActivity;
+import com.way.blebluetooth.ClsUtils;
+import com.way.blebluetooth.*;
 import com.way.mylock.FindNewDeviceActivity;
 import com.way.mylock.ConfigActivity;
 import com.way.pattern.R;
@@ -40,13 +42,6 @@ import com.way.sqlite.DBManager;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.clj.fastble.BleManager;
-import com.clj.fastble.callback.BleGattCallback;
-import com.clj.fastble.callback.BleNotifyCallback;
-import com.clj.fastble.callback.BleWriteCallback;
-import com.clj.fastble.exception.BleException;
-import com.clj.fastble.utils.HexUtil;
-import com.clj.fastble.data.BleDevice;
 
 public class MyLockFragment extends Fragment  {
     private  static Handler mHandler;
@@ -66,7 +61,6 @@ public class MyLockFragment extends Fragment  {
     private  static SharedPreferences pre;//用来读取保存的密码
     private  static SharedPreferences.Editor editor;
     private  static Boolean isRemember;
-    private BleManager mBleManager;
     @Override
     public void onStart() {
         super.onStart();
@@ -489,6 +483,10 @@ public class MyLockFragment extends Fragment  {
 //                        BluetoothDevice btDev = mBluetoothAdapter.getRemoteDevice(open_address);
 //                        final ConnectThread connectThread = new ConnectThread(btDev, open_password);
 //                        connectThread.start();
+                        RequestReceiver mRequestReceiver = new RequestReceiver();
+                        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST);
+                        filter.setPriority(Integer.MAX_VALUE);
+                        context.registerReceiver(mRequestReceiver, filter);
                         OpenDoor(open_address,open_password);
                         progressDialog=ProgressDialog.show(context,"请稍等……","正在开锁",false,true);
                     }

@@ -41,6 +41,7 @@ public class BleBlueToothManager {
             if (newState == BluetoothProfile.STATE_CONNECTED) {
                 if(mBleCallBack!=null) {
                     Log.w("onConnectionStateChange", "连接成功");
+//                    SystemClock.sleep(600);
                     mGatt.discoverServices();
                 }
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
@@ -56,7 +57,6 @@ public class BleBlueToothManager {
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 Log.i("onServicesDiscovered", "获取服务成功");
 //                mBleCallBack.onConnectSuccess();
-                SystemClock.sleep(100);
                 Notify();
             } else {
                 Log.w("onServicesDiscovered", "获取服务失败");
@@ -68,7 +68,7 @@ public class BleBlueToothManager {
             super.onCharacteristicChanged(gatt, characteristic);
 //            if (characteristic.getUuid().toString().equalsIgnoreCase(gatt.getDevice().getUuids().toString())) {
                 //收到消息 characteristic.getValue()
-                Log.i("onCharacteristicChanged", "订阅收到消息");
+                Log.i("onCharacteristicChanged", "订阅收到消息成功");
                 mBleCallBack.GetMsg(characteristic.getValue());
 //            }
         }
