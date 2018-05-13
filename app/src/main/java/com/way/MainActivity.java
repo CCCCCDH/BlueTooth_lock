@@ -55,12 +55,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         //设置初试的tab为0
         setTabSelection(0);
-
-//        Intent intent0=getIntent();
-//        Beacon beacon=(Beacon)intent0.getSerializableExtra("Beacon");
-
-
-
     }
 
     //设置点击事件

@@ -5,12 +5,12 @@
     android:versionName="1.0.0" >
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
-    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
     <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="18"
+        android:targetSdkVersion="23" />
 
     <application
         android:name="com.way.pattern.App"
@@ -40,7 +40,7 @@
             <!--/>-->
          <activity android:name="com.way.usercenter.MyInformation"/>
         <activity android:name="com.way.usercenter.MyInformationEdit"/>
-        <activity android:name="com.way.mylock.CommunicationActivity"/>
+        <!--<activity android:name="com.way.mylock.CommunicationActivity"/>-->
         <activity android:name="com.way.mylock.FindNewDeviceActivity"/>
         <activity android:name="com.way.mylock.ConfigActivity"/>
 

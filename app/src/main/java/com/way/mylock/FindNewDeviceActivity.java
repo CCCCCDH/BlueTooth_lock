@@ -17,30 +17,33 @@ import android.os.Bundle;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
+import android.view.LayoutInflater;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.support.v4.content.ContextCompat;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 
-import com.way.pattern.R;
-
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+
+import com.way.pattern.R;
+import com.way.sqlite.DBManager;
+
 
 
 public class FindNewDeviceActivity extends Activity {
     private ListView find_device_listview;
     private BluetoothAdapter localBluetoothAdapter;
     private boolean hasregister=false;
-    private DeviceListAdapter mAdapter;
     private ProgressDialog  searchDialog;
     private  ArrayList<Beacon> devices;
+    private DBManager dbManager;
+    private Boolean hasAdd=false;
     private static final int REQUEST_CODE_OPEN_GPS = 1;
     private static final int REQUEST_CODE_PERMISSION_LOCATION = 2;
     private List<String> lstDevices = new ArrayList<String>();
@@ -51,8 +54,6 @@ public class FindNewDeviceActivity extends Activity {
         public void run() {
             //开始搜索
             checkPermissions();
-//            onPermissionGranted();
-//            doDiscovery();
         }
     };
 
@@ -116,22 +117,7 @@ public class FindNewDeviceActivity extends Activity {
                 break;
         }
     }
-
-    public void setPairingDevices() {
-        Set<BluetoothDevice> devices=localBluetoothAdapter.getBondedDevices();
-        devices.clear();
-        mAdapter.notifyDataSetChanged();
-        if(devices.size()>0){ //存在已配对过的设备
-            for(Iterator<BluetoothDevice> it=devices.iterator();it.hasNext();){
-                BluetoothDevice btd=it.next();
-                Beacon beacon0 =new Beacon(btd.getName(),btd.getAddress());
-                this.devices.add(beacon0);
-                mAdapter.notifyDataSetChanged();
-            }
-        }else{   //不存在已经配对的蓝牙设备
-            Toast.makeText(this,"请扫描附近蓝牙设备",Toast.LENGTH_SHORT).show();
-        }
-    }
+    
     // Create a BroadcastReceiver for ACTION_FOUND
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
@@ -189,7 +175,6 @@ public class FindNewDeviceActivity extends Activity {
         find_device_listview.setAdapter(adtDevices);
 
         devices=new ArrayList<Beacon>();
-        //mAdapter=new DeviceListAdapter(FindNewDeviceActivity.this,devices);
         localBluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
         doDiscoveryWork.run();
 
@@ -206,29 +191,38 @@ public class FindNewDeviceActivity extends Activity {
                 Log.w("address----",address);
                 String name =values[0];
                 Log.w("name----", name);
-                BluetoothDevice btDev = localBluetoothAdapter.getRemoteDevice(address);
-                try {
-                    Boolean returnValue = false;
-                    if (btDev.getBondState() == BluetoothDevice.BOND_NONE) {
-                        //利用反射方法调用BluetoothDevice.createBond(BluetoothDevice remoteDevice);
-                        Method createBondMethod = BluetoothDevice.class
-                                .getMethod("createBond");
-                        Log.d("BlueToothTestActivity", "开始配对");
-                        returnValue = (Boolean) createBondMethod.invoke(btDev);
-                        if(returnValue) {
-//                            Toast.makeText(FindNewDeviceActivity.this, "输入Pin码", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    if(btDev.getBondState()==BluetoothDevice.BOND_BONDED){
-                        Toast.makeText(FindNewDeviceActivity.this,"完成配对",Toast.LENGTH_SHORT).show();
-                        setPairingDevices();
-                        FindNewDeviceActivity.this.finish();
-                    }else{
-//                        Toast.makeText(FindNewDeviceActivity.this,"配对失败",Toast.LENGTH_SHORT).show();
-                    }
+                final Beacon beacon0 = new Beacon(name, address);
+                //创建对话框
+                LayoutInflater layoutInflater=LayoutInflater.from(FindNewDeviceActivity.this);
+                View myDialogView =layoutInflater.inflate(R.layout.lock_build_dialog, null);
+                final EditText custom_name=(EditText)myDialogView.findViewById(R.id.custom_edit_name);
+                TextView address0=(TextView)myDialogView.findViewById(R.id.custom_address);
+                address0.setText(beacon0.getAddress());
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                //打开数据库
+                dbManager = new DBManager(FindNewDeviceActivity.this);
+                if(hasAdd=dbManager.isAdded(beacon0.getAddress())){
+                    Toast.makeText(FindNewDeviceActivity.this,"该设备已添加！请勿重复添加",Toast.LENGTH_SHORT).show();
+                }
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(FindNewDeviceActivity.this).setTitle("用户自定义").
+                        setIcon(R.drawable.ic_usercenter_help).
+                        setView(myDialogView).
+                        //完成按钮
+                                setPositiveButton("完成", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                beacon0.name = custom_name.getText().toString();
+                                Intent intent = getIntent();
+                                intent.putExtra("name", beacon0.name);
+                                intent.putExtra("address", beacon0.address);
+                                FindNewDeviceActivity.this.setResult(1, intent);
+                                FindNewDeviceActivity.this.finish();
+                            }
+                        }).
+                                setNegativeButton("取消",null);
+                //如果没有被添加，就显示对话框
+                if(!hasAdd){
+                    alertDialog.show();
                 }
             }
         });

@@ -22,6 +22,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RadioGroup;
 
+import com.way.blebluetooth.BleBlueToothManager;
+import com.way.blebluetooth.BleBlueToothCallBack;
+
 import com.way.pattern.R;
 import com.way.sqlite.DBManager;
 
@@ -73,7 +76,7 @@ public class ConfigActivity extends Activity {
         mBleManager
                 .enableLog(true)
                 .setReConnectCount(0, 1000)
-                .setOperateTimeout(2000);
+                .setOperateTimeout(5000);
         //打开数据库
         dbManager =new DBManager(ConfigActivity.this);
         //handler
@@ -219,7 +222,8 @@ public class ConfigActivity extends Activity {
                                             Toast.makeText(ConfigActivity.this,"两次密码输入不一致",Toast.LENGTH_SHORT).show();
                                             return;
                                         }
-                                        checkPassword(masterPassword, newPassword);
+                                        CheckPwd(configedAddress, masterPassword, newPassword);
+//                                        checkPassword(masterPassword, newPassword);
                                         progressDialog=ProgressDialog.show(ConfigActivity.this,"正在检验","请保持在设备附近",false,true);
                                     }
                                 }).show();
@@ -244,7 +248,8 @@ public class ConfigActivity extends Activity {
                                             Toast.makeText(ConfigActivity.this,"请输入6位数密码",Toast.LENGTH_SHORT).show();
                                             return;
                                         }
-                                        GetPwd(masterPassword);
+                                        GetPwd(configedAddress, masterPassword);
+//                                        GetPwdTh(masterPassword);
                                         progressDialog=ProgressDialog.show(ConfigActivity.this,"正在检验","请保持在设备附近",false,true);
                                     }
                                 }).show();
@@ -279,6 +284,50 @@ public class ConfigActivity extends Activity {
         return String.format("%06x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
     }
 
+    private void CheckPwd(String mac,String masterPassword, String newPassword){
+        final BleBlueToothManager mBleManager = new BleBlueToothManager();
+        mBleManager.init(this.getApplication());
+        final String msg = ("02"+toHex(masterPassword)+string_userClass+toHex(newPassword)+"23");
+        mBleManager.Connect(mac, msg, new BleBlueToothCallBack(){
+            @Override
+            public void onConnectFail() {
+                Log.w("gattConnect", "--------连接失败！----");
+                Message message = new Message();
+                message.what = 1;
+                mString="连接失败！";
+                mHandler.sendMessage(message);
+            }
+
+            @Override
+            public void WriteFail() {
+                Log.w("gattWrite", "--------发送指令失败！----");
+                Message message = new Message();
+                message.what = 1;
+                mString="发送指令失败！";
+                mHandler.sendMessage(message);
+            }
+
+            @Override
+            public void GetMsg(byte[] data) {
+                try{
+                    inputStreamString(data);
+                    mBleManager.DisConnect();
+                }
+                catch (IOException e) {
+                }
+            }
+
+            @Override
+            public void GetMsgFail() {
+                Log.w("gattNotify", "--------订阅消息失败！----");
+                Message message = new Message();
+                message.what = 1;
+                mString="接收门锁消息失败！";
+                mHandler.sendMessage(message);
+                mBleManager.DisConnect();
+            }
+        });
+    }
     private class CheckPasswordThread extends Thread {
         private  Message message =new Message();
         private Boolean isConnect=false;
@@ -331,7 +380,7 @@ public class ConfigActivity extends Activity {
                                     mString="接收门锁消息失败！";
                                     mHandler.sendMessage(message);
                                     mBleManager.disconnect(bleDevice);
-                                    mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                    mBleManager.getBluetoothGatt(mBleDevice).close();
                                 }
 
                                 @Override
@@ -339,7 +388,7 @@ public class ConfigActivity extends Activity {
                                     try{
                                         inputStreamString(data);
                                         mBleManager.disconnect(bleDevice);
-                                        mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                        mBleManager.getBluetoothGatt(mBleDevice).close();
                                     }
                                     catch (IOException e) {
                                     }
@@ -366,7 +415,7 @@ public class ConfigActivity extends Activity {
                                     mString="发送修改指令失败！";
                                     mHandler.sendMessage(message);
                                     mBleManager.disconnect(bleDevice);
-                                    mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                    mBleManager.getBluetoothGatt(mBleDevice).close();
                                 }
                             });
                 }
@@ -378,7 +427,51 @@ public class ConfigActivity extends Activity {
         }
     }
 
-    private void GetPwd(String msterPassword) {
+    private void GetPwd(String mac, String masterPassword){
+        final BleBlueToothManager mBleManager = new BleBlueToothManager();
+        mBleManager.init(this.getApplication());
+        final String msg = ("03"+toHex(masterPassword)+"23");
+        mBleManager.Connect(mac, msg, new BleBlueToothCallBack(){
+            @Override
+            public void onConnectFail() {
+                Log.w("gattConnect", "--------连接失败！----");
+                Message message = new Message();
+                message.what = 1;
+                mString="连接失败！";
+                mHandler.sendMessage(message);
+            }
+
+            @Override
+            public void WriteFail() {
+                Log.w("gattWrite", "--------发送指令失败！----");
+                Message message = new Message();
+                message.what = 1;
+                mString="发送指令失败！";
+                mHandler.sendMessage(message);
+            }
+
+            @Override
+            public void GetMsg(byte[] data) {
+                try{
+                    inputStreamString(data);
+                    mBleManager.DisConnect();
+                }
+                catch (IOException e) {
+                }
+            }
+
+            @Override
+            public void GetMsgFail() {
+                Log.w("gattNotify", "--------订阅消息失败！----");
+                Message message = new Message();
+                message.what = 1;
+                mString="接收门锁消息失败！";
+                mHandler.sendMessage(message);
+                mBleManager.DisConnect();
+            }
+        });
+    }
+    private void GetPwdTh(String msterPassword) {
         mBluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
         BluetoothDevice bluetoothDevice=mBluetoothAdapter.getRemoteDevice(configedAddress);
         GetPwdThread thread = new GetPwdThread(bluetoothDevice,msterPassword);
@@ -437,7 +530,7 @@ public class ConfigActivity extends Activity {
                                     mString="接收门锁消息失败！";
                                     mHandler.sendMessage(message);
                                     mBleManager.disconnect(bleDevice);
-                                    mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                    mBleManager.getBluetoothGatt(mBleDevice).close();
                                 }
 
                                 @Override
@@ -445,7 +538,7 @@ public class ConfigActivity extends Activity {
                                     try{
                                         inputStreamString(data);
                                         mBleManager.disconnect(bleDevice);
-                                        mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                        mBleManager.getBluetoothGatt(mBleDevice).close();
                                     }
                                     catch (IOException e) {
                                     }
@@ -472,7 +565,7 @@ public class ConfigActivity extends Activity {
                                     mString="发送查看指令失败！";
                                     mHandler.sendMessage(message);
                                     mBleManager.disconnect(bleDevice);
-                                    mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                    mBleManager.getBluetoothGatt(mBleDevice).close();
                                 }
                             });
                 }
