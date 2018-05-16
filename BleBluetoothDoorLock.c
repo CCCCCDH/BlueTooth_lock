@@ -1,9 +1,7 @@
 #include <reg52.h>
-// #include <stdio.h>
 unsigned int flage=0,len,i,class,checkFlag,sendPwdflag;
 unsigned char sendMsg,receiveData[20]="",pwd[6]="";
 unsigned char masterPwd[6]="128128",userPwd[6]="281281",loginPwd[6]="812812";  
-// sbit p33=P3^3;//单片机P3.3口
 sbit led=P2^0;
 
 void clean();
@@ -144,13 +142,11 @@ void checkMsg()
     {
         close();
         sendMsg=0x30;
-        // delay(500000); //大约延时4.5s
     }
 }
 
 void open()
 {
-    // p33=1;//单片机P33口置为高电平  
     led=0;
     delay(50000);
     close();
@@ -158,7 +154,6 @@ void open()
 
 void close()
 {
-    // p33=0;//单片机P33口置为低电平
     led=1;
 }
 
