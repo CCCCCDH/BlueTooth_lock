@@ -1,6 +1,8 @@
 package com.way.blebluetooth;
 
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
+import android.content.IntentFilter;
 import android.util.Log;
 
 import java.lang.reflect.Field;
@@ -72,58 +74,64 @@ public class ClsUtils {
         }
         return true;
     }
-
-    //确认配对
-
-    static public void setPairingConfirmation(Class<?> btClass,BluetoothDevice device,boolean isConfirm)throws Exception
-    {
-        Method setPairingConfirmation = btClass.getDeclaredMethod("setPairingConfirmation",boolean.class);
-        setPairingConfirmation.invoke(device,isConfirm);
+    public static void Paring(Context context){
+        RequestReceiver mRequestReceiver = new RequestReceiver();
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST);
+        filter.setPriority(Integer.MAX_VALUE);
+        context.registerReceiver(mRequestReceiver, filter);
     }
 
-    // 取消用户输入
-    static public boolean cancelPairingUserInput(Class btClass,
-                                                 BluetoothDevice device) throws Exception {
-        Method createBondMethod = btClass.getMethod("cancelPairingUserInput");
-        // cancelBondProcess()
-        Boolean returnValue = (Boolean) createBondMethod.invoke(device);
-        return returnValue.booleanValue();
-    }
+//    //确认配对
+//
+//    static public void setPairingConfirmation(Class<?> btClass,BluetoothDevice device,boolean isConfirm)throws Exception
+//    {
+//        Method setPairingConfirmation = btClass.getDeclaredMethod("setPairingConfirmation",boolean.class);
+//        setPairingConfirmation.invoke(device,isConfirm);
+//    }
+//
+//    // 取消用户输入
+//    static public boolean cancelPairingUserInput(Class btClass,
+//                                                 BluetoothDevice device) throws Exception {
+//        Method createBondMethod = btClass.getMethod("cancelPairingUserInput");
+//        // cancelBondProcess()
+//        Boolean returnValue = (Boolean) createBondMethod.invoke(device);
+//        return returnValue.booleanValue();
+//    }
 
-    // 取消配对
-    static public boolean cancelBondProcess(Class btClass,
-                                            BluetoothDevice device) throws Exception {
-        Method createBondMethod = btClass.getMethod("cancelBondProcess");
-        Boolean returnValue = (Boolean) createBondMethod.invoke(device);
-        return returnValue.booleanValue();
-    }
+//    // 取消配对
+//    static public boolean cancelBondProcess(Class btClass,
+//                                            BluetoothDevice device) throws Exception {
+//        Method createBondMethod = btClass.getMethod("cancelBondProcess");
+//        Boolean returnValue = (Boolean) createBondMethod.invoke(device);
+//        return returnValue.booleanValue();
+//    }
 
-    /**
-     * @param clsShow
-     */
-    static public void printAllInform(Class clsShow) {
-        try {
-            // 取得所有方法
-            Method[] hideMethod = clsShow.getMethods();
-            int i = 0;
-            for (; i < hideMethod.length; i++) {
-                Log.e("method name", hideMethod[i].getName() + ";and the i is:"
-                        + i);
-            }
-            // 取得所有常量
-            Field[] allFields = clsShow.getFields();
-            for (i = 0; i < allFields.length; i++) {
-                Log.e("Field name", allFields[i].getName());
-            }
-        } catch (SecurityException e) {
-            // throw new RuntimeException(e.getMessage());
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            // throw new RuntimeException(e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+//    /**
+//     * @param clsShow
+//     */
+//    static public void printAllInform(Class clsShow) {
+//        try {
+//            // 取得所有方法
+//            Method[] hideMethod = clsShow.getMethods();
+//            int i = 0;
+//            for (; i < hideMethod.length; i++) {
+//                Log.e("method name", hideMethod[i].getName() + ";and the i is:"
+//                        + i);
+//            }
+//            // 取得所有常量
+//            Field[] allFields = clsShow.getFields();
+//            for (i = 0; i < allFields.length; i++) {
+//                Log.e("Field name", allFields[i].getName());
+//            }
+//        } catch (SecurityException e) {
+//            // throw new RuntimeException(e.getMessage());
+//            e.printStackTrace();
+//        } catch (IllegalArgumentException e) {
+//            // throw new RuntimeException(e.getMessage());
+//            e.printStackTrace();
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//    }
 }

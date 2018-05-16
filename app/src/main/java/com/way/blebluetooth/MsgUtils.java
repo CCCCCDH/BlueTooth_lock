@@ -22,7 +22,7 @@ public class MsgUtils {
         return (byte) "0123456789ABCDEF".indexOf(c);
     }
 
-    public String DecStringtoHexString(String arg) {//将6位string转换成12位hex string
+    public static String DecStringtoHexString(String arg) {//将6位string转换成12位hex string
         return String.format("%06x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
     }
 }

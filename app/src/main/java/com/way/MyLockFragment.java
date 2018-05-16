@@ -55,21 +55,16 @@ public class MyLockFragment extends Fragment  {
     private static Context context; //!!!!!!!把这个context设正static 否则getActivity返回为空
     public EditText editText_password;
     private String open_password; //用于开锁的密码
-    private  static String mString;
-    private  static ProgressDialog progressDialog;
-    private  static CheckBox rememberPass; //是否保存了密码
-    private  static SharedPreferences pre;//用来读取保存的密码
-    private  static SharedPreferences.Editor editor;
-    private  static Boolean isRemember;
+    private static String mString;
+    private static ProgressDialog progressDialog;
+    private static CheckBox rememberPass; //是否保存了密码
+    private static SharedPreferences pre;//用来读取保存的密码
+    private static SharedPreferences.Editor editor;
+    private static Boolean isRemember;
+//    private static Boolean needParing=false;
     @Override
     public void onStart() {
         super.onStart();
-//        mBleManager = BleManager.getInstance();
-//        mBleManager.init(this.getActivity().getApplication());
-//        mBleManager
-//                .enableLog(true)
-//                .setReConnectCount(0, 0)
-//                .setOperateTimeout(5000);
     }
 
     @Override
@@ -182,10 +177,10 @@ public class MyLockFragment extends Fragment  {
         super.onDestroy();
         dbManager.closeDB();//关闭数据库
     }
-    public String toHex(String arg) {//将6位string转换成12位hex string
-        return String.format("%06x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
-    }
-    public  void inputStreamString (byte[]  b) throws IOException   {
+//    public String toHex(String arg) {//将6位string转换成12位hex string
+//        return String.format("%06x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
+//    }
+    public  void inputStreamString (byte[]  b) {
         Message message =new Message();//创建一个Message
         Log.w("inputStream.available", "  " + b.length);
         mString=new String(b);
@@ -193,10 +188,16 @@ public class MyLockFragment extends Fragment  {
         Log.w("mString +","-"+mString+"-");
         mHandler.sendMessage(message);
     }
+//    public void Paring(){
+//        RequestReceiver mRequestReceiver = new RequestReceiver();
+//        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST);
+//        filter.setPriority(Integer.MAX_VALUE);
+//        context.registerReceiver(mRequestReceiver, filter);
+//    }
     public void OpenDoor(String mac,String pwd){
         final BleBlueToothManager mBleManager = new BleBlueToothManager();
         mBleManager.init(this.getActivity().getApplication());
-        final String msg = ("01"+toHex(pwd)+"23");
+        final String msg = ("01"+MsgUtils.DecStringtoHexString(pwd)+"23");
         mBleManager.Connect(mac, msg, new BleBlueToothCallBack(){
             @Override
             public void onConnectFail() {
@@ -218,12 +219,7 @@ public class MyLockFragment extends Fragment  {
 
             @Override
             public void GetMsg(byte[] data) {
-                try{
-                    inputStreamString(data);
-                    mBleManager.DisConnect();
-                }
-                catch (IOException e) {
-                }
+                inputStreamString(data);
             }
 
             @Override
@@ -233,7 +229,6 @@ public class MyLockFragment extends Fragment  {
                 message.what = 1;
                 mString="接收门锁消息失败！";
                 mHandler.sendMessage(message);
-                mBleManager.DisConnect();
             }
         });
     }
@@ -358,11 +353,6 @@ public class MyLockFragment extends Fragment  {
             this.devices=devices;
         }
 
-        public ArrayList<Beacon> addDevice(Beacon device){
-            devices.add(device);
-            return devices;
-        }
-
         @Override
         public int getCount() {
             return devices.size();
@@ -479,17 +469,14 @@ public class MyLockFragment extends Fragment  {
                             editor.putBoolean("remember_password" + count, false);
                         }
                         editor.commit();
+//                        if(needParing){
+//                            Paring();
+//                        }
 
-//                        BluetoothDevice btDev = mBluetoothAdapter.getRemoteDevice(open_address);
-//                        final ConnectThread connectThread = new ConnectThread(btDev, open_password);
-//                        connectThread.start();
-                        RequestReceiver mRequestReceiver = new RequestReceiver();
-                        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST);
-                        filter.setPriority(Integer.MAX_VALUE);
-                        context.registerReceiver(mRequestReceiver, filter);
                         OpenDoor(open_address,open_password);
                         progressDialog=ProgressDialog.show(context,"请稍等……","正在开锁",false,true);
                     }
                 }).show();
     }
+
 }

@@ -1,11 +1,9 @@
 package com.way.mylock;
 
-import java.math.BigInteger;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,31 +15,22 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.bluetooth.BluetoothGatt;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RadioGroup;
 
 import com.way.blebluetooth.BleBlueToothManager;
 import com.way.blebluetooth.BleBlueToothCallBack;
+import com.way.blebluetooth.MsgUtils;
 
 import com.way.pattern.R;
 import com.way.sqlite.DBManager;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.clj.fastble.BleManager;
-import com.clj.fastble.callback.BleGattCallback;
-import com.clj.fastble.callback.BleNotifyCallback;
-import com.clj.fastble.callback.BleWriteCallback;
-import com.clj.fastble.exception.BleException;
-import com.clj.fastble.utils.HexUtil;
-import com.clj.fastble.data.BleDevice;
 
 
 public class ConfigActivity extends Activity {
@@ -58,7 +47,6 @@ public class ConfigActivity extends Activity {
     private String configedAddress=""; //被管理设备的地址
     private ProgressDialog progressDialog;
     private static android.os.Handler mHandler;
-    private BleManager mBleManager;
     private DBManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +59,6 @@ public class ConfigActivity extends Activity {
         configedName=intent.getStringExtra("configName");
         configedAddress=intent.getStringExtra("configAddress");
         configDeviceName.setText(configedName);
-        mBleManager = BleManager.getInstance();
-        mBleManager.init(this.getApplication());
-        mBleManager
-                .enableLog(true)
-                .setReConnectCount(0, 1000)
-                .setOperateTimeout(5000);
         //打开数据库
         dbManager =new DBManager(ConfigActivity.this);
         //handler
@@ -273,21 +255,22 @@ public class ConfigActivity extends Activity {
         });
         }
 
-    private void checkPassword(String msterPassword,String newPassword) {
-        mBluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
-        BluetoothDevice bluetoothDevice=mBluetoothAdapter.getRemoteDevice(configedAddress);
-        CheckPasswordThread thread = new CheckPasswordThread(bluetoothDevice,msterPassword,newPassword);
-        thread.start();
-    }
+//    private void checkPassword(String msterPassword,String newPassword) {
+//        mBluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
+//        BluetoothDevice bluetoothDevice=mBluetoothAdapter.getRemoteDevice(configedAddress);
+//        CheckPasswordThread thread = new CheckPasswordThread(bluetoothDevice,msterPassword,newPassword);
+//        thread.start();
+//    }
 
-    public String toHex(String arg) {//将6位string转换成12位hex string
-        return String.format("%06x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
-    }
+//    public String toHex(String arg) {//将6位string转换成12位hex string
+//        return String.format("%06x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
+//    }
 
     private void CheckPwd(String mac,String masterPassword, String newPassword){
         final BleBlueToothManager mBleManager = new BleBlueToothManager();
         mBleManager.init(this.getApplication());
-        final String msg = ("02"+toHex(masterPassword)+string_userClass+toHex(newPassword)+"23");
+        final String msg = ("02"+MsgUtils.DecStringtoHexString(masterPassword)+
+        string_userClass+MsgUtils.DecStringtoHexString(newPassword)+"23");
         mBleManager.Connect(mac, msg, new BleBlueToothCallBack(){
             @Override
             public void onConnectFail() {
@@ -309,12 +292,8 @@ public class ConfigActivity extends Activity {
 
             @Override
             public void GetMsg(byte[] data) {
-                try{
-                    inputStreamString(data);
-                    mBleManager.DisConnect();
-                }
-                catch (IOException e) {
-                }
+                inputStreamString(data);
+                mBleManager.DisConnect();
             }
 
             @Override
@@ -324,113 +303,112 @@ public class ConfigActivity extends Activity {
                 message.what = 1;
                 mString="接收门锁消息失败！";
                 mHandler.sendMessage(message);
-                mBleManager.DisConnect();
             }
         });
     }
-    private class CheckPasswordThread extends Thread {
-        private  Message message =new Message();
-        private Boolean isConnect=false;
-        private BleDevice mBleDevice;
-        private String password;
-        public CheckPasswordThread(BluetoothDevice device,String masterPassword,String newPassword) {
-            Method m;
-            this.password=("02"+toHex(masterPassword)+string_userClass+toHex(newPassword)+"23");
-            mBleDevice = mBleManager.convertBleDevice(device);
-        }
+//    private class CheckPasswordThread extends Thread {
+//        private  Message message =new Message();
+//        private Boolean isConnect=false;
+//        private BleDevice mBleDevice;
+//        private String password;
+//        public CheckPasswordThread(BluetoothDevice device,String masterPassword,String newPassword) {
+//            Method m;
+//            this.password=("02"+toHex(masterPassword)+string_userClass+toHex(newPassword)+"23");
+//            mBleDevice = mBleManager.convertBleDevice(device);
+//        }
+//
+//            public void run(){
+//                mBluetoothAdapter.cancelDiscovery();
+//                connect(mBleDevice);
+//
+//        }
+//        private void connect(final BleDevice mBleDevice) {
+//            mBleManager.connect(mBleDevice.getMac(), new BleGattCallback() {
+//                @Override
+//                public void onStartConnect() {
+//                    // 开始连接
+//                }
+//
+//                @Override
+//                public void onConnectFail(BleDevice bleDevice, BleException exception) {
+//                    Log.w("--------连接失败！----", "btsocket");
+//                    Message message = new Message();
+//                    message.what = 1;
+//                    mString="连接失败！";
+//                    mHandler.sendMessage(message);
+//                }
+//
+//                @Override
+//                public void onConnectSuccess(final BleDevice bleDevice,final BluetoothGatt gatt, int status) {
+//                    mBleManager.notify(
+//                            bleDevice,
+//                            "0000ffe0-0000-1000-8000-00805f9b34fb",
+//                            "0000ffe1-0000-1000-8000-00805f9b34fb",
+//                            new BleNotifyCallback() {
+//
+//                                @Override
+//                                public void onNotifySuccess() {
+//                                }
+//
+//                                @Override
+//                                public void onNotifyFailure(final BleException exception) {
+//                                    Log.w("--------接收消息失败！----", "btsocket");
+//                                    Message message = new Message();
+//                                    message.what = 1;
+//                                    mString="接收门锁消息失败！";
+//                                    mHandler.sendMessage(message);
+//                                    mBleManager.disconnect(bleDevice);
+////                                    mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                }
+//
+//                                @Override
+//                                public void onCharacteristicChanged(byte[] data) {
+//                                    try{
+//                                        inputStreamString(data);
+//                                        mBleManager.disconnect(bleDevice);
+////                                        mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                    }
+//                                    catch (IOException e) {
+//                                    }
+//                                }
+//                            });
+//
+//                    mBleManager.write(
+//                            bleDevice,
+//                            "0000ffe0-0000-1000-8000-00805f9b34fb",
+//                            "0000ffe1-0000-1000-8000-00805f9b34fb",
+//                            HexUtil.hexStringToBytes(password),
+//                            new BleWriteCallback() {
+//
+//                                @Override
+//                                public void onWriteSuccess(final int current, final int total, final byte[] justWrite) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onWriteFailure(final BleException exception) {
+//                                    Log.w("--------发送消息失败！----", "btsocket");
+//                                    Message message = new Message();
+//                                    message.what = 1;
+//                                    mString="发送修改指令失败！";
+//                                    mHandler.sendMessage(message);
+//                                    mBleManager.disconnect(bleDevice);
+////                                    mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                }
+//                            });
+//                }
+//
+//                @Override
+//                public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
+//                }
+//            });
+//        }
+//    }
 
-            public void run(){
-                mBluetoothAdapter.cancelDiscovery();
-                connect(mBleDevice);
-
-        }
-        private void connect(final BleDevice mBleDevice) {
-            mBleManager.connect(mBleDevice.getMac(), new BleGattCallback() {
-                @Override
-                public void onStartConnect() {
-                    // 开始连接
-                }
-
-                @Override
-                public void onConnectFail(BleDevice bleDevice, BleException exception) {
-                    Log.w("--------连接失败！----", "btsocket");
-                    Message message = new Message();
-                    message.what = 1;
-                    mString="连接失败！";
-                    mHandler.sendMessage(message);
-                }
-
-                @Override
-                public void onConnectSuccess(final BleDevice bleDevice,final BluetoothGatt gatt, int status) {
-                    mBleManager.notify(
-                            bleDevice,
-                            "0000ffe0-0000-1000-8000-00805f9b34fb",
-                            "0000ffe1-0000-1000-8000-00805f9b34fb",
-                            new BleNotifyCallback() {
-
-                                @Override
-                                public void onNotifySuccess() {
-                                }
-
-                                @Override
-                                public void onNotifyFailure(final BleException exception) {
-                                    Log.w("--------接收消息失败！----", "btsocket");
-                                    Message message = new Message();
-                                    message.what = 1;
-                                    mString="接收门锁消息失败！";
-                                    mHandler.sendMessage(message);
-                                    mBleManager.disconnect(bleDevice);
-//                                    mBleManager.getBluetoothGatt(mBleDevice).close();
-                                }
-
-                                @Override
-                                public void onCharacteristicChanged(byte[] data) {
-                                    try{
-                                        inputStreamString(data);
-                                        mBleManager.disconnect(bleDevice);
-//                                        mBleManager.getBluetoothGatt(mBleDevice).close();
-                                    }
-                                    catch (IOException e) {
-                                    }
-                                }
-                            });
-
-                    mBleManager.write(
-                            bleDevice,
-                            "0000ffe0-0000-1000-8000-00805f9b34fb",
-                            "0000ffe1-0000-1000-8000-00805f9b34fb",
-                            HexUtil.hexStringToBytes(password),
-                            new BleWriteCallback() {
-
-                                @Override
-                                public void onWriteSuccess(final int current, final int total, final byte[] justWrite) {
-
-                                }
-
-                                @Override
-                                public void onWriteFailure(final BleException exception) {
-                                    Log.w("--------发送消息失败！----", "btsocket");
-                                    Message message = new Message();
-                                    message.what = 1;
-                                    mString="发送修改指令失败！";
-                                    mHandler.sendMessage(message);
-                                    mBleManager.disconnect(bleDevice);
-//                                    mBleManager.getBluetoothGatt(mBleDevice).close();
-                                }
-                            });
-                }
-
-                @Override
-                public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                }
-            });
-        }
-    }
-
-    private void GetPwd(String mac, String masterPassword){
+    public void GetPwd(String mac, String masterPassword){
         final BleBlueToothManager mBleManager = new BleBlueToothManager();
         mBleManager.init(this.getApplication());
-        final String msg = ("03"+toHex(masterPassword)+"23");
+        final String msg = ("03"+MsgUtils.DecStringtoHexString(masterPassword)+"23");
         mBleManager.Connect(mac, msg, new BleBlueToothCallBack(){
             @Override
             public void onConnectFail() {
@@ -448,16 +426,13 @@ public class ConfigActivity extends Activity {
                 message.what = 1;
                 mString="发送指令失败！";
                 mHandler.sendMessage(message);
+                mBleManager.DisConnect();
             }
 
             @Override
             public void GetMsg(byte[] data) {
-                try{
-                    inputStreamString(data);
-                    mBleManager.DisConnect();
-                }
-                catch (IOException e) {
-                }
+                inputStreamString(data);
+                mBleManager.DisConnect();
             }
 
             @Override
@@ -471,117 +446,117 @@ public class ConfigActivity extends Activity {
             }
         });
     }
-    private void GetPwdTh(String msterPassword) {
-        mBluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
-        BluetoothDevice bluetoothDevice=mBluetoothAdapter.getRemoteDevice(configedAddress);
-        GetPwdThread thread = new GetPwdThread(bluetoothDevice,msterPassword);
-        thread.start();
-    }
+//    private void GetPwdTh(String msterPassword) {
+//        mBluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
+//        BluetoothDevice bluetoothDevice=mBluetoothAdapter.getRemoteDevice(configedAddress);
+//        GetPwdThread thread = new GetPwdThread(bluetoothDevice,msterPassword);
+//        thread.start();
+//    }
 
-    private class GetPwdThread extends Thread {
-        private  Message message =new Message();
-        private Boolean isConnect=false;
-        private BleDevice mBleDevice;
-        private String password;
-        public GetPwdThread(BluetoothDevice device,String masterPassword) {
-            Method m;
-            this.password=("03"+toHex(masterPassword)+"23");
-            mBleDevice = mBleManager.convertBleDevice(device);
-        }
-
-        public void run(){
-            mBluetoothAdapter.cancelDiscovery();
-            connect(mBleDevice);
-        }
-        private void connect(final BleDevice mBleDevice) {
-            mBleManager.connect(mBleDevice.getMac(), new BleGattCallback() {
-                @Override
-                public void onStartConnect() {
-                    // 开始连接
-                }
-
-                @Override
-                public void onConnectFail(BleDevice bleDevice, BleException exception) {
-                    Log.w("--------连接失败！----", "btsocket");
-                    Message message = new Message();
-                    message.what = 1;
-                    mString="连接失败！";
-                    mHandler.sendMessage(message);
-                }
-
-                @Override
-                public void onConnectSuccess(final BleDevice bleDevice,final BluetoothGatt gatt, int status) {
-//                    isGetMsgOver=false;
-                    mBleManager.notify(
-                            bleDevice,
-                            "0000ffe0-0000-1000-8000-00805f9b34fb",
-                            "0000ffe1-0000-1000-8000-00805f9b34fb",
-                            new BleNotifyCallback() {
-
-                                @Override
-                                public void onNotifySuccess() {
-                                }
-
-                                @Override
-                                public void onNotifyFailure(final BleException exception) {
-                                    Log.w("--------接收消息失败！----", "btsocket");
-                                    Message message = new Message();
-                                    message.what = 1;
-                                    mString="接收门锁消息失败！";
-                                    mHandler.sendMessage(message);
-                                    mBleManager.disconnect(bleDevice);
-//                                    mBleManager.getBluetoothGatt(mBleDevice).close();
-                                }
-
-                                @Override
-                                public void onCharacteristicChanged(byte[] data) {
-                                    try{
-                                        inputStreamString(data);
-                                        mBleManager.disconnect(bleDevice);
-//                                        mBleManager.getBluetoothGatt(mBleDevice).close();
-                                    }
-                                    catch (IOException e) {
-                                    }
-                                }
-                            });
-
-                    mBleManager.write(
-                            bleDevice,
-                            "0000ffe0-0000-1000-8000-00805f9b34fb",
-                            "0000ffe1-0000-1000-8000-00805f9b34fb",
-                            HexUtil.hexStringToBytes(password),
-                            new BleWriteCallback() {
-
-                                @Override
-                                public void onWriteSuccess(final int current, final int total, final byte[] justWrite) {
-                                }
-
-                                @Override
-                                public void onWriteFailure(final BleException exception) {
-//                                    StopNotify(bleDevice);
-                                    Log.w("--------发送消息失败！----", "btsocket");
-                                    Message message = new Message();
-                                    message.what = 1;
-                                    mString="发送查看指令失败！";
-                                    mHandler.sendMessage(message);
-                                    mBleManager.disconnect(bleDevice);
-//                                    mBleManager.getBluetoothGatt(mBleDevice).close();
-                                }
-                            });
-                }
-
-                @Override
-                public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                }
-            });
-        }
-    }
+//    private class GetPwdThread extends Thread {
+//        private  Message message =new Message();
+//        private Boolean isConnect=false;
+//        private BleDevice mBleDevice;
+//        private String password;
+//        public GetPwdThread(BluetoothDevice device,String masterPassword) {
+//            Method m;
+//            this.password=("03"+toHex(masterPassword)+"23");
+//            mBleDevice = mBleManager.convertBleDevice(device);
+//        }
+//
+//        public void run(){
+//            mBluetoothAdapter.cancelDiscovery();
+//            connect(mBleDevice);
+//        }
+//        private void connect(final BleDevice mBleDevice) {
+//            mBleManager.connect(mBleDevice.getMac(), new BleGattCallback() {
+//                @Override
+//                public void onStartConnect() {
+//                    // 开始连接
+//                }
+//
+//                @Override
+//                public void onConnectFail(BleDevice bleDevice, BleException exception) {
+//                    Log.w("--------连接失败！----", "btsocket");
+//                    Message message = new Message();
+//                    message.what = 1;
+//                    mString="连接失败！";
+//                    mHandler.sendMessage(message);
+//                }
+//
+//                @Override
+//                public void onConnectSuccess(final BleDevice bleDevice,final BluetoothGatt gatt, int status) {
+////                    isGetMsgOver=false;
+//                    mBleManager.notify(
+//                            bleDevice,
+//                            "0000ffe0-0000-1000-8000-00805f9b34fb",
+//                            "0000ffe1-0000-1000-8000-00805f9b34fb",
+//                            new BleNotifyCallback() {
+//
+//                                @Override
+//                                public void onNotifySuccess() {
+//                                }
+//
+//                                @Override
+//                                public void onNotifyFailure(final BleException exception) {
+//                                    Log.w("--------接收消息失败！----", "btsocket");
+//                                    Message message = new Message();
+//                                    message.what = 1;
+//                                    mString="接收门锁消息失败！";
+//                                    mHandler.sendMessage(message);
+//                                    mBleManager.disconnect(bleDevice);
+////                                    mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                }
+//
+//                                @Override
+//                                public void onCharacteristicChanged(byte[] data) {
+//                                    try{
+//                                        inputStreamString(data);
+//                                        mBleManager.disconnect(bleDevice);
+////                                        mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                    }
+//                                    catch (IOException e) {
+//                                    }
+//                                }
+//                            });
+//
+//                    mBleManager.write(
+//                            bleDevice,
+//                            "0000ffe0-0000-1000-8000-00805f9b34fb",
+//                            "0000ffe1-0000-1000-8000-00805f9b34fb",
+//                            HexUtil.hexStringToBytes(password),
+//                            new BleWriteCallback() {
+//
+//                                @Override
+//                                public void onWriteSuccess(final int current, final int total, final byte[] justWrite) {
+//                                }
+//
+//                                @Override
+//                                public void onWriteFailure(final BleException exception) {
+////                                    StopNotify(bleDevice);
+//                                    Log.w("--------发送消息失败！----", "btsocket");
+//                                    Message message = new Message();
+//                                    message.what = 1;
+//                                    mString="发送查看指令失败！";
+//                                    mHandler.sendMessage(message);
+//                                    mBleManager.disconnect(bleDevice);
+////                                    mBleManager.getBluetoothGatt(mBleDevice).close();
+//                                }
+//                            });
+//                }
+//
+//                @Override
+//                public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
+//                }
+//            });
+//        }
+//    }
 
     public void clean(){
         mString="";
     }
 
-    public  void inputStreamString (byte[]  b) throws IOException   {
+    public  void inputStreamString (byte[]  b)  {
         Log.w("inputStream.available", "  " + b.length);
         mString=new String(b) ;
         Message message =new Message();//创建一个Message
