@@ -13,16 +13,6 @@
 对应写了一份硬件的c代码
 当毕设交了
 ```
-```
-最后吐槽几句 边实习边做毕设是真的麻烦
-实习用go 毕设用安卓.两者一比
-同样是谷歌下的开发团队 Android studio怎么就这么难用 对新手太不友好了
-新人教学文章和视频乱七八糟 导入各种项目都不能运行 
-最后还是创了个空项目 再把其他项目代码拷进来才能运行 
-导入个第三方库又麻烦的一批 
-go就怎么用怎么简单舒服
-这差距简直了...
-```
 
 ## 功能
 
@@ -44,13 +34,28 @@ https://blog.csdn.net/sunzhaojie613/article/details/51511054
 ```
 软件：Android studio
 时间比较赶，水平十分有限，代码写的很混乱，懒得改了
+关于配对，已经写好并测过了取消配对的代码，放在ClsUtils和BleBluetoothManager里
+不过还没加上修改PIN值的相关代码，再加功能怕停不下来毕设搞不完了。。
+修改PIN我觉得可以通过断开蓝牙连接后通过单片机的串口发送AT指令给蓝牙模块实现
 
 附上ble蓝牙参考的文章：
 https://github.com/Jasonchenlijian/FastBle
 http://www.android-doc.com/reference/android/bluetooth/BluetoothGatt.html
+http://www.th7.cn/Program/Android/201703/1120984.shtml
 
 附上安卓fork来的原代码：
 https://github.com/huyifan/BlueTooth_lock
 
 
+```
+
+```
+最后吐槽几句 边实习边做毕设是真的麻烦
+实习用go 毕设用安卓.两者一比
+同样是谷歌下的开发团队 Android studio怎么就这么难用 对新手太不友好了
+新人教学文章和视频乱七八糟 导入各种项目都不能运行 
+最后还是创了个空项目 再把其他项目代码拷进来才能运行 
+导入个第三方库又麻烦的一批 
+go就怎么用怎么简单舒服
+这差距简直了...
 ```
