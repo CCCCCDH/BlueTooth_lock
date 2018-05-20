@@ -33,6 +33,7 @@ public class BleBlueToothManager {
     private LastState lastState;
     public Boolean isdiscoverTimeOut = false;
     public Boolean isNotifyTimeOut = false;
+    private static Boolean needParing=false;
     enum LastState {
         CONNECT_CONNECTING,
         CONNECT_CONNECTED,
@@ -111,7 +112,7 @@ public class BleBlueToothManager {
                 if (mBleCallBack != null) {
                     Log.w("onConnectionStateChange", "连接成功");
 
-                    if (mDevice.getBondState() == BluetoothDevice.BOND_NONE) {
+                    if (mDevice.getBondState() == BluetoothDevice.BOND_NONE && needParing) {
                         try {
                             ClsUtils.Paring(context);
                             ClsUtils.createBond(mGatt.getDevice().getClass(),mGatt.getDevice());
@@ -122,7 +123,6 @@ public class BleBlueToothManager {
 //                    while (mDevice.getBondState() != BluetoothDevice.BOND_BONDED) {
 //                    }
                     Log.w("BOND_BONDED", "成功配对");
-//                    SystemClock.sleep(2000);
                     handler.sendEmptyMessageDelayed(0,500);
                 } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
 
