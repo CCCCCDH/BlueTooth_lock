@@ -6,13 +6,9 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCallback;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -33,13 +29,11 @@ import android.widget.Toast;
 import com.way.mylock.Beacon;
 import com.way.blebluetooth.BleBlueToothManager;
 import com.way.blebluetooth.BleBlueToothCallBack;
-import com.way.blebluetooth.ClsUtils;
 import com.way.blebluetooth.*;
 import com.way.mylock.FindNewDeviceActivity;
 import com.way.mylock.ConfigActivity;
 import com.way.pattern.R;
 import com.way.sqlite.DBManager;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -113,11 +107,8 @@ public class MyLockFragment extends Fragment  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.w("onCreate", "----------");
-
         //获取活动
         context = getActivity();
-
-
         //获取sharePreference
         pre = context.getSharedPreferences("rememberPassword",Context.MODE_PRIVATE);
         editor=pre.edit();
@@ -177,9 +168,7 @@ public class MyLockFragment extends Fragment  {
         super.onDestroy();
         dbManager.closeDB();//关闭数据库
     }
-//    public String toHex(String arg) {//将6位string转换成12位hex string
-//        return String.format("%06x", new BigInteger(1, arg.getBytes(/*YOUR_CHARSET?*/)));
-//    }
+
     public  void inputStreamString (byte[]  b) {
         Message message =new Message();//创建一个Message
         Log.w("inputStream.available", "  " + b.length);
@@ -188,12 +177,7 @@ public class MyLockFragment extends Fragment  {
         Log.w("mString +","-"+mString+"-");
         mHandler.sendMessage(message);
     }
-//    public void Paring(){
-//        RequestReceiver mRequestReceiver = new RequestReceiver();
-//        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST);
-//        filter.setPriority(Integer.MAX_VALUE);
-//        context.registerReceiver(mRequestReceiver, filter);
-//    }
+
     public void OpenDoor(String mac,String pwd){
         final BleBlueToothManager mBleManager = new BleBlueToothManager();
         mBleManager.init(this.getActivity().getApplication());

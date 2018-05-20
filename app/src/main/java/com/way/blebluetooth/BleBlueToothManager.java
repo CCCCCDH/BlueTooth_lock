@@ -249,25 +249,6 @@ public class BleBlueToothManager {
         mCharacteristic.setValue(sendMsg);
         mGatt.writeCharacteristic(mCharacteristic);
     }
-//    public void WriteDescriptor(){
-//        mGattService = mGatt.getService(UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb"));
-//        mCharacteristic = mGattService.getCharacteristic(UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb"));
-//        BluetoothGattDescriptor mDescriptor = mCharacteristic.getDescriptor(UUID.fromString(UUID_CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR));
-//        mDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-//        boolean suc = mGatt.writeDescriptor(mDescriptor);
-//        Log.i("返回成功suc", String.valueOf(suc));
-//        if(!suc){
-//            mBleCallBack.onConnectFail();
-//        }
-//    }
-//    public void Notify(){
-//        mGattService = mGatt.getService(UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb"));
-//        mCharacteristic = mGattService.getCharacteristic(UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb"));
-////        BluetoothGattDescriptor mDescriptor = mCharacteristic.getDescriptor(UUID.fromString(UUID_CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR));
-////        mDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-////        mGatt.writeDescriptor(mDescriptor);
-//        mGatt.setCharacteristicNotification(mCharacteristic, true);
-//    }
     public  void Notify(){
         mGattService = mGatt.getService(UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb"));
         if(mGattService == null)
@@ -305,7 +286,6 @@ public class BleBlueToothManager {
                 return ;
             }
         }
-//        mGatt.readDescriptor(mDescriptor);
     }
     public void StopNotify(){
         if(mGatt == null)

@@ -10,142 +10,18 @@
   </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/way/mylock/ConfigActivity.java" line="409" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/way/MyLockFragment.java" line="61" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/way/MyLockFragment.java" line="102" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbcf8532-dbc8-46b4-b120-11fff9184729" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build.gradle" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/generated/source/buildConfig/debug/com/clj/fastble/BuildConfig.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/generated/source/r/debug/com/clj/fastble/R.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/attr/R.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/BleManager$BleManagerHolder.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/BleManager.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/BuildConfig.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/R.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/BleBluetooth$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/BleBluetooth$LastState.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/BleBluetooth$MainHandler.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/BleBluetooth.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/BleConnector$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/BleConnector.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/MultipleBluetoothController$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/MultipleBluetoothController.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/SplitWriter$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/SplitWriter$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/bluetooth/SplitWriter.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleBaseCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleGattCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleIndicateCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleMtuChangedCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleNotifyCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleReadCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleRssiCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleScanAndConnectCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleScanCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/callback/BleWriteCallback.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/data/BleConnectStateParameter.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/data/BleDevice$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/data/BleDevice.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/data/BleMsg.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/data/BleScanState.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/data/BleWriteState.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/exception/BleException.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/exception/ConnectException.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/exception/GattException.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/exception/OtherException.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/exception/TimeoutException.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanPresenter$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanPresenter$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanPresenter$3.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanPresenter$4.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanPresenter$5.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanPresenter$6.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanPresenter$ScanHandler.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanPresenter.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanRuleConfig$Builder.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanRuleConfig.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanner$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanner$2$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanner$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanner$BleScannerHolder.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/scan/BleScanner.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/utils/BleLog.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/utils/BleLruHashMap.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/classes/debug/com/clj/fastble/utils/HexUtil.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/extractedTypedefs/debug/typedefs.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/incremental/compileDebugAidl/dependency.store" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/incremental/debug-mergeJniLibs/merge-state" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/incremental/packageDebugAssets/merger.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/incremental/packageDebugResources/merger.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/intermediate-jars/debug/classes.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/intermediate-jars/debug/res.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/javaPrecompile/debug/annotationProcessors.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/manifests/aapt/debug/AndroidManifest.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/manifests/aapt/debug/output.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/manifests/full/debug/output.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/packaged-classes/debug/classes.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/symbols/debug/R.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/transforms/mergeJavaRes/debug/0.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/outputs/aar/FastBleLib-debug.aar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/proguard-rules.pro" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/AndroidManifest.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/BleManager.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/bluetooth/BleBluetooth.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/bluetooth/BleConnector.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/bluetooth/MultipleBluetoothController.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/bluetooth/SplitWriter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleBaseCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleGattCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleIndicateCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleMtuChangedCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleNotifyCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleReadCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleRssiCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleScanAndConnectCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleScanCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/callback/BleWriteCallback.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/data/BleConnectStateParameter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/data/BleDevice.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/data/BleMsg.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/data/BleScanState.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/data/BleWriteState.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/exception/BleException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/exception/ConnectException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/exception/GattException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/exception/OtherException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/exception/TimeoutException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/scan/BleScanPresenter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/scan/BleScanRuleConfig.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/scan/BleScanner.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/utils/BleLog.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/utils/BleLruHashMap.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/utils/HexUtil.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/BleBluetoothDoorLock.c" afterPath="$PROJECT_DIR$/BleBluetoothDoorLock.c" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/MyLockFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/way/MyLockFragment.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothCallBack.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothCallBack.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothManager.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/ClsUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/ClsUtils.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/MsgUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/MsgUtils.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/RequestReceiver.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/RequestReceiver.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/mylock/CommunicationActivity.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/mylock/ConfigActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/way/mylock/ConfigActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/mylock/DeviceListAdapter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/way/pattern/LockPasswordUtils.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/lock_build_dialog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/lock_build_dialog.xml" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -168,69 +44,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MyInformation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/usercenter/MyInformation.java">
+      <file leaf-file-name="attrs.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/attrs.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="462">
+              <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/sqlite/DBHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-247">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
-            </state>
+      <file leaf-file-name="title_fragment_layout.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/title_fragment_layout.xml">
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LockPatternView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/view/LockPatternView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="37" column="23" lean-forward="true" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyRecordFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/MyRecordFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TitileFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/TitileFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserCenterFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/UserCenterFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1251">
-              <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="color.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/color.xml">
-          <provider selected="true" editor-type-id="text-editor">
+          <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
@@ -238,31 +67,84 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="attrs.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/attrs.xml">
+      <file leaf-file-name="MyLockFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/MyLockFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1531">
+              <caret line="180" column="16" lean-forward="false" selection-start-line="180" selection-start-column="16" selection-end-line="180" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2077#2078#0" expanded="true" />
+                <element signature="e#2108#2109#0" expanded="true" />
+                <element signature="e#3186#3534#0" expanded="true" />
+                <element signature="e#3533#3534#0" expanded="true" />
+                <element signature="e#7650#7651#0" expanded="true" />
+                <element signature="e#7705#7706#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BleBlueToothCallBack.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothCallBack.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
-              <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="44" />
+              <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <file leaf-file-name="BleBlueToothManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="29" column="12" lean-forward="true" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+            <state relative-caret-position="290">
+              <caret line="102" column="33" lean-forward="false" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/sqlite/DBManager.java">
+      <file leaf-file-name="RequestReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/RequestReceiver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="19" column="45" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MsgUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/MsgUtils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
-              <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClsUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/ClsUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2200">
+              <caret line="106" column="7" lean-forward="true" selection-start-line="106" selection-start-column="7" selection-end-line="106" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mylock_layout.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/mylock_layout.xml">
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -279,14 +161,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onDescriptorRead成功</find>
-      <find>onDescriptorRead</find>
-      <find>133</find>
-      <find>8</find>
-      <find>DEVICE_TYPE_DUAL</find>
-      <find>getRemoteDevice</find>
-      <find>Ble</find>
-      <find>mBleManager</find>
       <find>configedAddress</find>
       <find>GetPwd</find>
       <find>toHex</find>
@@ -309,6 +183,14 @@
       <find>onTouchEvent</find>
       <find>LockPatternView</find>
       <find>attemptLockout</find>
+      <find>DB_TABLE_NAME</find>
+      <find>TitileFragment</find>
+      <find>hideFragments</find>
+      <find>onCreateView</find>
+      <find>editor</find>
+      <find>connect</find>
+      <find>mGat</find>
+      <find>Connect</find>
     </findStrings>
     <replaceStrings>
       <replace>setDevice</replace>
@@ -2502,24 +2384,24 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/way/mylock/FindNewDeviceActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/way/pattern/LockPasswordUtils.java" />
         <option value="$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/bluetooth/BleBluetooth.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothCallBack.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/MsgUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/RequestReceiver.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/way/MyLockFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/ClsUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/lock_build_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/way/mylock/ConfigActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/way/MyLockFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothManager.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator currentView="AndroidView" proportions="" version="1">
@@ -2536,15 +2418,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
             <path>
               <item name="BlueTooth_lock" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="BlueTooth_lock" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
             </path>
             <path>
               <item name="BlueTooth_lock" type="1abcf292:AndroidViewProjectNode" />
@@ -2608,6 +2492,18 @@
               <item name="BlueTooth_lock" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="anim" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="BlueTooth_lock" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="BlueTooth_lock" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
@@ -2618,6 +2514,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -2807,9 +2706,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2825,8 +2724,8 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20042644" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2965368" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19480519" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -2849,144 +2748,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://F:/Android_sdk/Sdk/sources/android-23/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="42" column="19" lean-forward="false" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/Android_sdk/Sdk/sources/android-23/android/os/BaseBundle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="43" column="16" lean-forward="true" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/Android_sdk/Sdk/sources/android-23/android/content/Intent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="5283" column="24" lean-forward="true" selection-start-line="5283" selection-start-column="24" selection-end-line="5283" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FastBleLib/src/main/java/com/clj/fastble/BleManager.java" />
-    <entry file="file://$PROJECT_DIR$/FastBleLib/build.gradle" />
-    <entry file="file://F:/Android_sdk/Sdk/sources/android-23/android/os/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="31" column="19" lean-forward="false" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/Android_sdk/Sdk/sources/android-23/android/bluetooth/BluetoothProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="55" column="28" lean-forward="false" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/Android_sdk/Sdk/sources/android-23/com/android/settingslib/bluetooth/CachedBluetoothDevice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6248">
-          <caret line="318" column="20" lean-forward="false" selection-start-line="318" selection-start-column="20" selection-end-line="318" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/Android_sdk/Sdk/sources/android-23/android/bluetooth/BluetoothDevice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="278" column="31" lean-forward="false" selection-start-line="278" selection-start-column="31" selection-end-line="278" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/mylock/CommunicationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/MyLockFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1509">
-          <caret line="473" column="27" lean-forward="false" selection-start-line="473" selection-start-column="27" selection-end-line="473" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2310#2311#0" expanded="true" />
-            <element signature="e#2341#2342#0" expanded="true" />
-            <element signature="e#8356#8357#0" expanded="true" />
-            <element signature="e#8411#8412#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/mylock/DeviceListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1373">
-          <caret line="20" column="2" lean-forward="true" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lock_build_dialog.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="28" column="16" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="36" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/view/LockPatternUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="69" column="27" lean-forward="true" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main_activity_layout.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://F:/Android_sdk/Sdk/sources/android-23/android/os/Bundle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -2999,7 +2760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="57" column="28" lean-forward="false" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3007,122 +2767,61 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="3648" column="25" lean-forward="false" selection-start-line="3648" selection-start-column="25" selection-end-line="3648" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="40" column="20" lean-forward="true" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/bottom_bar.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gesturepassword_guide.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/com/way/pattern/R.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="1949" column="28" lean-forward="false" selection-start-line="1949" selection-start-column="28" selection-end-line="1949" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gesturepassword_create.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gesturepassword_unlock.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gesturepassword_unlock.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="47" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/pattern/LockPasswordUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4202">
-          <caret line="191" column="46" lean-forward="false" selection-start-line="191" selection-start-column="46" selection-end-line="191" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothCallBack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="115" column="51" lean-forward="false" selection-start-line="115" selection-start-column="51" selection-end-line="115" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/ClsUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="135" column="7" lean-forward="false" selection-start-line="135" selection-start-column="7" selection-end-line="135" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/MsgUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/RequestReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="19" column="45" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/pattern/LockPasswordUtils.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/mylock/Beacon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -3131,33 +2830,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/mylock/ConfigActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#27426#27427#0" expanded="true" />
-            <element signature="e#27452#27453#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/mylock/FindNewDeviceActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
           <caret line="196" column="74" lean-forward="false" selection-start-line="196" selection-start-column="74" selection-end-line="196" selection-end-column="74" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/mylock/Record.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3166,16 +2845,8 @@
         <state relative-caret-position="330">
           <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/pattern/CreateGesturePasswordActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3203,50 +2874,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/sqlite/DBManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/sqlite/DBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-247">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/view/LockPatternView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="37" column="23" lean-forward="true" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/MyRecordFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
+        <state relative-caret-position="0">
           <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/TitileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/UserCenterFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1251">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -3259,18 +2890,318 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/attrs.xml">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="44" />
+        <state relative-caret-position="220">
+          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="29" column="12" lean-forward="true" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+        <state relative-caret-position="638">
+          <caret line="29" column="12" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/UserCenterFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/sqlite/DBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/sqlite/DBManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="97" column="30" lean-forward="true" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="35" column="45" lean-forward="false" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/TitileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/mylock/ConfigActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#27426#27427#0" expanded="true" />
+            <element signature="e#27452#27453#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/mylock/Record.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/pattern/CreateGesturePasswordActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="35" column="36" lean-forward="false" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/view/LockPatternUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1178">
+          <caret line="69" column="27" lean-forward="true" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/view/LockPatternView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-286">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/shake_y.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/shake_x.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/interpolator_cycle.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/shake.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="134" column="9" lean-forward="true" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/Android_sdk/Sdk/sources/android-23/android/os/Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="86" column="16" lean-forward="false" selection-start-line="86" selection-start-column="16" selection-end-line="86" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/mylock_custom_listitem_layout.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/mylock_listitem_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/myrecord_layout.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/record_item_layout.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/title_fragment_layout.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/mylock_layout.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main_activity_layout.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/attrs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/MyLockFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1531">
+          <caret line="180" column="16" lean-forward="false" selection-start-line="180" selection-start-column="16" selection-end-line="180" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2077#2078#0" expanded="true" />
+            <element signature="e#2108#2109#0" expanded="true" />
+            <element signature="e#3186#3534#0" expanded="true" />
+            <element signature="e#3533#3534#0" expanded="true" />
+            <element signature="e#7650#7651#0" expanded="true" />
+            <element signature="e#7705#7706#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothCallBack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/RequestReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="45" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/MsgUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/ClsUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2200">
+          <caret line="106" column="7" lean-forward="true" selection-start-line="106" selection-start-column="7" selection-end-line="106" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/Android_sdk/Sdk/sources/android-23/android/bluetooth/BluetoothDevice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="588" column="44" lean-forward="false" selection-start-line="588" selection-start-column="44" selection-end-line="588" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/way/blebluetooth/BleBlueToothManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="102" column="33" lean-forward="false" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="33" />
           <folding />
         </state>
       </provider>
