@@ -163,22 +163,17 @@ public class BleBlueToothManager {
         @Override
         public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
             super.onCharacteristicChanged(gatt, characteristic);
-//            if (characteristic.getUuid().toString().equalsIgnoreCase(gatt.getDevice().getUuids().toString())) {
-                //收到消息 characteristic.getValue()
                 Log.i("onCharacteristicChanged", "订阅收到消息成功");
                 mBleCallBack.GetMsg(characteristic.getValue());
                 DisConnect();
                 refreshDeviceCache();
                 DisConnect();
-//            }
         }
         @Override
         public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
             super.onDescriptorWrite(gatt, descriptor, status);
             Log.i("onDescriptorWrite", "成功收到设置描述操作返回消息");
             if (status == BluetoothGatt.GATT_SUCCESS) {
-//                Notify();
-//                SendMsg(mMsg);
                 handler.sendEmptyMessage(2);
             } else {
                 mBleCallBack.GetMsgFail();
