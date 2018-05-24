@@ -73,11 +73,11 @@ public class BleBlueToothManager {
                             refreshDeviceCache();
                             DisConnect();
                             try {
-                                ClsUtils.removeBond(mGatt.getDevice().getClass(),mGatt.getDevice());
+                                ClsUtils.removeBond(mGatt.getDevice().
+                                        getClass(),mGatt.getDevice());
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-//                            GattClose();
                         }
                         break;
                 case 4:
@@ -93,7 +93,6 @@ public class BleBlueToothManager {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-//                        GattClose();
                     }
                     break;
                 default:
